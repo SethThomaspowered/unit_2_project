@@ -18,7 +18,18 @@ You are listening to your favorite podcast when you hear about a new book or alb
 
 
 ## ERD
-![Media Library ERD (1)](https://user-images.githubusercontent.com/72534273/147978728-57681628-b286-4b43-952e-b466d921f45c.png)
+![Media Library ERD (2)](https://user-images.githubusercontent.com/72534273/147989004-048f9abb-d476-4651-bf7f-6029da1a63c3.png)
+
+MVP Models
+- Users
+- Playlists
+- Music
+
+Nice to Have Models
+- Podcast
+- Audiobooks
+- Artists
+- Media ypes
 
 ## EndPoints
 
