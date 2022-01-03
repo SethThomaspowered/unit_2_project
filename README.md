@@ -50,7 +50,7 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |GET	|get all Artists	|/api/artists/	|None	|None	|PUBLIC
 |GET	|get single Artist	|/api/artists/{artistId}	|None	|None	|PUBLIC
 |POST	|create Artists	|/auth/user/admin/...	|Artist Details	|Authorization Bearer TOKEN	|ADMIN
-|||DELETE	|delete Artists	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|DELETE	|delete Artists	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get all Media Types	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get single Media type	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
 |POST	|create Media Type	|/auth/user/admin/...	|Media Type Info	|Authorization Bearer TOKEN	|ADMIN
