@@ -10,4 +10,7 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - As a user, I want to be able to search by length of playlist.
 - As a user, I want to be able to make changes to my playlists.
 - As a user, I want to be able to delete a playlist that I no longer want.
+- As  a content curator, I would like to be able to share my playlists.
+
+
 
