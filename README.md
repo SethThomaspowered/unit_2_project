@@ -23,10 +23,10 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 ------------ |------------ | ------------- | ------------- | ------------- | -------------
 |GET	| gets all Users	|/auth/user/admin/getusers	|None	|None	|ADMIN
 |GET	|get single User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|POST	|create single User	|/api/register	User Details	|None	|PUBLIC
-|POST	|login User	|/api/login	User login Info	None	PUBLIC
-|PUT	|update User	|/auth/user/...	User Details	|Authorization Bearer TOKEN	|PRIVATE
-|DELETE	|delete User	|/auth/user/...	None	|Authorization Bearer TOKEN	|PRIVATE
+|POST	|create single User	|/api/register	|User Details	|None	|PUBLIC
+|POST	|login User	|/api/login	|User login Info	|None	|PUBLIC
+|PUT	|update User	|/auth/user/...	|User Details	|Authorization Bearer TOKEN	|PRIVATE
+|DELETE	|delete User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 |GET	|gets all Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 |GET	|get single Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 |POST	|create single Playlist	|/auth/user/...	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
@@ -50,12 +50,10 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |GET	|get all Artists	|/api/artists/	|None	|None	|PUBLIC
 |GET	|get single Artist	|/api/artists/{artistId}	|None	|None	|PUBLIC
 |POST	|create Artists	|/auth/user/admin/...	|Artist Details	|Authorization Bearer TOKEN	|ADMIN
-|||DELETE	|delete Artists	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
-|GET	|get all Media Types	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
-|GET	|get single Media type	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
-|POST	|create Media Type	|/auth/user/admin/...	|Media Type Info	Authorization Bearer TOKEN	|ADMIN
-|DELETE	|delete Media Type	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
+|||DELETE	|delete Artists	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get all Media Types	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get single Media type	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|POST	|create Media Type	|/auth/user/admin/...	|Media Type Info	|Authorization Bearer TOKEN	|ADMIN
+|DELETE	|delete Media Type	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
 
-
-[Ultimate Playlist EndPoints (Draft) - Sheet1.pdf](https://github.com/SethThomaspowered/unit_2_project/files/7804107/Ultimate.Playlist.EndPoints.Draft.-.Sheet1.pdf)
 
