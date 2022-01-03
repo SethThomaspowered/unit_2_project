@@ -34,7 +34,7 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |DELETE	|delete Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 |GET	|get all Podcasts	|/api/artists/{artistId}/podcasts	|None	|None	|PUBLIC
 |GET	|get single Podcast	|/api/artists/{artistId}/pidcasts/{podcastId}	|None	|None	|PUBLIC
-|POST	|create single Podcast	|/auth/user/admin/...	|Podcast info	|None	A|DMIN
+|POST	|create single Podcast	|/auth/user/admin/...	|Podcast info	|None	|ADMIN
 |PUT	|update Podcast	|/auth/user/admin/...	|Podcast info	|Authorization Bearer TOKEN	|ADMIN
 |DELETE	|delete Podcast	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get all Music	|/api/artists/{artistId}/songs	|None	|None	|PUBLIC
