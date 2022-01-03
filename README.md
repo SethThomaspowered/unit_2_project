@@ -21,16 +21,14 @@ You are listening to your favorite podcast when you hear about a new book or alb
 Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 ------------ |------------ | ------------- | ------------- | ------------- | -------------
 
-GET	| gets all Users	|/auth/user/admin/getusers	|None	|None	|ADMIN
------------- |------------ | ------------- | ------------- | ------------- | -------------
-
-GET	|get single User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-POST	|create single User	|/api/register	User Details	|None	|PUBLIC
-POST	|login User	|/api/login	User login Info	None	PUBLIC
-PUT	|update User	|/auth/user/...	User Details	|Authorization Bearer TOKEN	|PRIVATE
-DELETE	|delete User	|/auth/user/...	None	|Authorization Bearer TOKEN	|PRIVATE
-GET	|gets all Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-GET	|get single Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
+|GET	| gets all Users	|/auth/user/admin/getusers	|None	|None	|ADMIN
+|GET	|get single User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
+|POST	|create single User	|/api/register	User Details	|None	|PUBLIC
+|POST	|login User	|/api/login	User login Info	None	PUBLIC
+|PUT	|update User	|/auth/user/...	User Details	|Authorization Bearer TOKEN	|PRIVATE
+|DELETE	|delete User	|/auth/user/...	None	|Authorization Bearer TOKEN	|PRIVATE
+|GET	|gets all Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
+|GET	|get single Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 POST	|create single Playlist	|/auth/user/...	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
 PUT	|update Playlist	|/auth/user/...	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
 DELETE	|delete Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
