@@ -55,6 +55,8 @@ GET	|get all Media Types	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	
 GET	|get single Media type	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
 POST	|create Media Type	|/auth/user/admin/...	|Media Type Info	Authorization Bearer TOKEN	|ADMIN
 DELETE	|delete Media Type	|/auth/user/admin/...	|None	Authorization Bearer TOKEN	|ADMIN
+------------ |------------ | ------------- | ------------- | ------------- | -------------
+
 
 [Ultimate Playlist EndPoints (Draft) - Sheet1.pdf](https://github.com/SethThomaspowered/unit_2_project/files/7804107/Ultimate.Playlist.EndPoints.Draft.-.Sheet1.pdf)
 
