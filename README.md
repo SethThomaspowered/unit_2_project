@@ -22,6 +22,8 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 ------------ |------------ | ------------- | ------------- | ------------- | -------------
 
 GET	| gets all Users	|/auth/user/admin/getusers	|None	|None	|ADMIN
+------------ |------------ | ------------- | ------------- | ------------- | -------------
+
 GET	|get single User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
 POST	|create single User	|/api/register	User Details	|None	|PUBLIC
 POST	|login User	|/api/login	User login Info	None	PUBLIC
