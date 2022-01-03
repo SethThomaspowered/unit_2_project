@@ -18,7 +18,6 @@ You are listening to your favorite podcast when you hear about a new book or alb
 ![Media Library ERD (1)](https://user-images.githubusercontent.com/72534273/147978728-57681628-b286-4b43-952e-b466d921f45c.png)
 
 ## EndPoints
-[Ultimate Playlist EndPoints (Draft).xlsx](https://github.com/SethThomaspowered/unit_2_project/files/7804113/Ultimate.Playlist.EndPoints.Draft.xlsx)
 
 [Ultimate Playlist EndPoints (Draft) - Sheet1.pdf](https://github.com/SethThomaspowered/unit_2_project/files/7804107/Ultimate.Playlist.EndPoints.Draft.-.Sheet1.pdf)
 
