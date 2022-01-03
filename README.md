@@ -10,4 +10,4 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - As a user, I want to be able to search by length of playlist.
 - As a user, I want to be able to make changes to my playlists.
 - As a user, I want to be able to delete a playlist that I no longer want.
-![Media Library ERD](https://user-images.githubusercontent.com/72534273/147975362-f83d361a-102d-4100-b9cc-00695abab2aa.png)
+
