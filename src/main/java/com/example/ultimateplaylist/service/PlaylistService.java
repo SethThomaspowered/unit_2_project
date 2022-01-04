@@ -72,6 +72,18 @@ public class PlaylistService {
             return playlistRepository.save(playlist);
         }
     }
+    public String deletePlaylist(Long playlistId) {
+        LOGGER.info("service calling deletePlaylist ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        } else {
+            playlistRepository.deleteById(playlistId);
+            return "Playlist with id " + playlistId + " has been successfully deleted";
+        }
+    }
 //    @Autowired
 //    public void setMusicRepository(MusicRepository musicRepository) {
 //        this.musicRepository = musicRepository;
