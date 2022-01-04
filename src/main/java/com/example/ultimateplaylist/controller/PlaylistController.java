@@ -97,12 +97,12 @@ public class PlaylistController {
                                         @RequestBody Music musicObject){
         return playlistService.updatePlaylistMusic(playlistId,musicId,musicObject);
     }
-//
-//    // http://localhost:9092/api/playlist/1/music/1
-//    @DeleteMapping(path = "/playlists/{playlistId}/music/{musicId}")
-//    public Music deletePlaylistMusic(@PathVariable (value = "playlistId") Long playlistId,
-//                                       @PathVariable (value = "musicId") Long musicId){
-//        return playlistService.deletePlaylistMusic(playlistId,musicId);
-//    }
+
+    // http://localhost:9092/api/playlist/1/music/1
+    @DeleteMapping(path = "/playlists/{playlistId}/music/{musicId}")
+    public Music deletePlaylistMusic(@PathVariable (value = "playlistId") Long playlistId,
+                                       @PathVariable (value = "musicId") Long musicId){
+        return playlistService.deletePlaylistMusic(playlistId,musicId);
+    }
 
 }
