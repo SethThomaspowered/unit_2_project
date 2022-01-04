@@ -99,7 +99,7 @@ public class PlaylistService {
             throw new InformationNotFoundException(
                     "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
         }
-       Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
+        Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
         if (music != null) {
             throw new InformationExistsException("Music with title " + music.getTitle() + " already exists");
         }
@@ -147,17 +147,17 @@ public class PlaylistService {
         }
     }
 
-//    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
-//        try {
-//            Music music = (musicRepository.findByPlaylistId(
-//                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
-//            musicRepository.deleteById(music.getId());
-//        } catch (NoSuchElementException e) {
-//            throw new InformationNotFoundException("music track or playlist not found");
-//        }
-//        return null;
-//    }
+    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+        try {
+            Music music = (musicRepository.findByPlaylistId(
+                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+            musicRepository.deleteById(music.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+        return null;
+    }
 }
