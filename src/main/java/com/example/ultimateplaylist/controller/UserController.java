@@ -28,7 +28,7 @@ public class UserController{
         return userService.createUser(userObject);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(LoginRequest loginRequest){
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest){
         LOGGER.info("calling loginUser method from controller");
         return userService.loginUser(loginRequest);
     }
