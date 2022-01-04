@@ -1,6 +1,4 @@
 package com.example.ultimateplaylist.security;
-
-import com.example.ultimateplaylist.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
