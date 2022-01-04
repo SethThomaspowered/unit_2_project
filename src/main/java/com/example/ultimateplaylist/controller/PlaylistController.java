@@ -52,55 +52,55 @@ public class PlaylistController {
 
     // http://localhost:9092/api/playlists/1
     @PutMapping(path = "/playlists/{playlistId}")
-    public Playlist updatePlaylist(@PathVariable(value = "PlaylistId") Long playlistId, @RequestBody Playlist playlistObject) {
+    public Playlist updatePlaylist(@PathVariable(value = "playlistId") Long playlistId, @RequestBody Playlist playlistObject) {
         LOGGER.info("calling updatePlaylist method from controller");
-        return categoryService.updateCategory(categoryId, playlistObject);
+        return playlistService.updatePlaylist(playlistId, playlistObject);
     }
 
-    // http://localhost:9092/api/categories/1
-    @DeleteMapping("/categories/{categoryId}")
-    public Category deleteCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        LOGGER.info("calling deleteCategory method from controller");
-        return categoryService.deleteCategory(categoryId);
+    // http://localhost:9092/api/playlists/1
+    @DeleteMapping("/playlists/{playlistId}")
+    public Playlist deletePlaylist(@PathVariable(value = "playlistId") Long playlistId) {
+        LOGGER.info("calling deletePlaylist method from controller");
+        return playlistService.deletePlaylist(playlistId);
     }
 
-    // http://localhost:9092/api/categories/1/recipes
-    @PostMapping("/categories/{categoryId}/recipes")
-    public Recipe createCategoryRecipe(
-            @PathVariable(value = "categoryId") Long categoryId,
+    // http://localhost:9092/api/playlist/1/music
+    @PostMapping("/playlists/{playlistId}/music")
+    public Music createPlaylistSong(
+            @PathVariable(value = "playlistId") Long playlistId,
             @RequestBody Recipe recipeObject) {
-        LOGGER.info("calling createCategoryRecipe method from controller");
-        return categoryService.createCategoryRecipe(categoryId, recipeObject);
+        LOGGER.info("calling createPlaylistMusic method from controller");
+        return playlistService.createPlaylistMusic(playlistId, musicObject);
     }
 
-    // http://localhost:9092/api/categories/1/recipes/1
-    @GetMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
-    public Recipe getCategoryRecipe( @PathVariable(value = "categoryId") Long categoryId,
-                                     @PathVariable(value = "recipeId") Long recipeId){
-        LOGGER.info("calling getCategoryRecipe method from controller");
-        return categoryService.getCategoryRecipe(categoryId, recipeId);
-    }
-
-    // http://localhost:9092/api/categories/1/recipes
-    @GetMapping(path = "/categories/{categoryId}/recipes")
-    public List<Recipe> getCategoryRecipes( @PathVariable (value = "categoryId") Long categoryId){
-        LOGGER.info("calling getCategoryRecipes method from controller");
-        return categoryService.getCategoryRecipes(categoryId);
-    }
-
-    // http://localhost:9092/api/categories/1/recipes/1
-    @PutMapping(path= "/categories/{categoryId}/recipes/{recipeId}" )
-    public Recipe updateCategoryRecipe( @PathVariable (value = "categoryId") Long categoryId,
-                                        @PathVariable(value = "recipeId") Long recipeId,
-                                        @RequestBody Recipe recipeObject){
-        return categoryService.updateCategoryRecipe(categoryId,recipeId,recipeObject);
-    }
-
-    // http://localhost:9092/api/categories/1/recipes/1
-    @DeleteMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
-    public Recipe deleteCategoryRecipe(@PathVariable (value = "categoryId") Long categoryId,
-                                       @PathVariable (value = "recipeId") Long recipeId){
-        return categoryService.deleteCategoryRecipe(categoryId,recipeId);
-    }
+//    // http://localhost:9092/api/categories/1/recipes/1
+//    @GetMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
+//    public Recipe getCategoryRecipe( @PathVariable(value = "categoryId") Long categoryId,
+//                                     @PathVariable(value = "recipeId") Long recipeId){
+//        LOGGER.info("calling getCategoryRecipe method from controller");
+//        return categoryService.getCategoryRecipe(categoryId, recipeId);
+//    }
+//
+//    // http://localhost:9092/api/categories/1/recipes
+//    @GetMapping(path = "/categories/{categoryId}/recipes")
+//    public List<Recipe> getCategoryRecipes( @PathVariable (value = "categoryId") Long categoryId){
+//        LOGGER.info("calling getCategoryRecipes method from controller");
+//        return categoryService.getCategoryRecipes(categoryId);
+//    }
+//
+//    // http://localhost:9092/api/categories/1/recipes/1
+//    @PutMapping(path= "/categories/{categoryId}/recipes/{recipeId}" )
+//    public Recipe updateCategoryRecipe( @PathVariable (value = "categoryId") Long categoryId,
+//                                        @PathVariable(value = "recipeId") Long recipeId,
+//                                        @RequestBody Recipe recipeObject){
+//        return categoryService.updateCategoryRecipe(categoryId,recipeId,recipeObject);
+//    }
+//
+//    // http://localhost:9092/api/categories/1/recipes/1
+//    @DeleteMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
+//    public Recipe deleteCategoryRecipe(@PathVariable (value = "categoryId") Long categoryId,
+//                                       @PathVariable (value = "recipeId") Long recipeId){
+//        return categoryService.deleteCategoryRecipe(categoryId,recipeId);
+//    }
 
 }
