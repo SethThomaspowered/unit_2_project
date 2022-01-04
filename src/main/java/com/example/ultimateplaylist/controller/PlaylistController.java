@@ -66,11 +66,11 @@ public class PlaylistController {
 
     // http://localhost:9092/api/playlist/1/music
     @PostMapping("/playlists/{playlistId}/music")
-    public Music createPlaylistSong(
+    public Music addPlaylistSong(
             @PathVariable(value = "playlistId") Long playlistId,
-            @RequestBody Recipe recipeObject) {
-        LOGGER.info("calling createPlaylistMusic method from controller");
-        return playlistService.createPlaylistMusic(playlistId, musicObject);
+            @RequestBody Music musicObject) {
+        LOGGER.info("calling addPlaylistMusic method from controller");
+        return playlistService.addPlaylistMusic(playlistId, musicObject);
     }
 
 //    // http://localhost:9092/api/categories/1/recipes/1
