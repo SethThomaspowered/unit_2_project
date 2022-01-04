@@ -22,15 +22,19 @@ import java.util.logging.Logger;
 public class UserService {
     private UserRepository userRepository;
     private static final Logger LOGGER = Logger.getLogger((UserService.class.getName()));
+
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Autowired
     private JWTUtils jwtUtils;
+
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
     @Autowired
     public void setUserRepository(UserRepository userRepository){
         this.userRepository = userRepository;
