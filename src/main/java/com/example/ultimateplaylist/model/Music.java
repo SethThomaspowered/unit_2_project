@@ -27,15 +27,15 @@ public class Music {
 
     //to join tables multiple music rows to multiple playlists
     @JsonIgnore
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "playlist_id")
-    private List<Playlist> playlists;
+    private Playlist playlist;
 
     //to join tables multiple music rows to multiple playlists
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private List<User> users;
+    private User user;
 
 
     public Music() {}
@@ -87,8 +87,8 @@ public class Music {
     }
 
     // to get all playlist music track is in
-    public List<Playlist> getPlaylists() {
-        return playlists;
+    public Playlist getPlaylist() {
+        return playlist;
     }
 
 //    public void setPlaylist(Playlist playlist) {
@@ -103,6 +103,11 @@ public class Music {
         isPublic = isPublic;
     }
 
+    public void setUser(User user) {
+    }
+
+    public void setPlaylist(Playlist playlist) {
+    }
 
 
 //    public void setUser(User user) {
