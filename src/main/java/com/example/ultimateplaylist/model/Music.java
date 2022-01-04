@@ -25,11 +25,13 @@ public class Music {
     @Column
     private boolean isPublic;
 
+    //to join tables multiple music rows to multiple playlists
     @JsonIgnore
     @ManyToMany
     @JoinColumn(name = "playlist_id")
     private List<Playlist> playlists;
 
+    //to join tables multiple music rows to multiple playlists
     @ManyToMany
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -80,6 +82,7 @@ public class Music {
                 '}';
     }
 
+    // to get all playlist music track is in
     public List<Playlist> getPlaylists() {
         return playlists;
     }

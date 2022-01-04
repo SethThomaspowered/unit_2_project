@@ -2,6 +2,7 @@ package com.example.ultimateplaylist.service;
 
 import com.example.ultimateplaylist.exception.InformationExistsException;
 import com.example.ultimateplaylist.model.Playlist;
+import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
 import com.example.ultimateplaylist.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 @Service
 public class PlaylistService {
     private PlaylistRepository playlistRepository;
+    private MusicRepository musicRepository;
     private static final Logger LOGGER = Logger.getLogger(PlaylistService.class.getName());
     @Autowired
     private void setPlaylistRepository(PlaylistRepository playlistRepository){
@@ -31,4 +33,11 @@ public class PlaylistService {
             return playlistRepository.save(playlistObject);
         }
     }
+
+
+    @Autowired
+    public void setMusicRepository(MusicRepository musicRepository) {
+        this.musicRepository = musicRepository;
+    }
+    
 }

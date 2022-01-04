@@ -67,7 +67,7 @@ public class PlaylistController {
 //
 //    // http://localhost:9092/api/playlist/1/music
 //    @PostMapping("/playlists/{playlistId}/music")
-//    public Music addPlaylistSong(
+//    public Music addPlaylistMusic(
 //            @PathVariable(value = "playlistId") Long playlistId,
 //            @RequestBody Music musicObject) {
 //        LOGGER.info("calling addPlaylistMusic method from controller");
