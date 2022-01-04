@@ -23,6 +23,10 @@ public class UserController{
     public void setUserService(UserService userService){
         this.userService = userService;
     }
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @PostMapping("/register")
     public User createUser(@RequestBody User userObject){
         LOGGER.info("calling createUser method from controller");
