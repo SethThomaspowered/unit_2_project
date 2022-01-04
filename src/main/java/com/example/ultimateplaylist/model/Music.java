@@ -27,15 +27,16 @@ public class Music {
 
     //to join tables multiple music rows to multiple playlists
     @JsonIgnore
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "playlist_id")
-    private List<Playlist> playlists;
+    private Playlist playlist;
 
     //to join tables multiple music rows to multiple playlists
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private List<User> user;
+    private User user;
+
 
     public Music() {}
 
@@ -71,6 +72,9 @@ public class Music {
         this.releaseDate = releaseDate;
     }
 
+//    public User setUser(User user){
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {
@@ -83,8 +87,8 @@ public class Music {
     }
 
     // to get all playlist music track is in
-    public List<Playlist> getPlaylists() {
-        return playlists;
+    public Playlist getPlaylist() {
+        return playlist;
     }
 
 //    public void setPlaylist(Playlist playlist) {
@@ -99,10 +103,13 @@ public class Music {
         isPublic = isPublic;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
+    public void setUser(User user) {
+    }
+
+    public void setPlaylist(Playlist playlist) {
+    }
+
+
 //    public void setUser(User user) {
 //        this.user = user;
 //    }

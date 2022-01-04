@@ -23,7 +23,7 @@ public class Playlist {
 
     // one playlist can contain more than one song, one song can be on many playlists
     //not sure if this is set up correctly...should this be join to colummn?
-    @ManyToMany(mappedBy = "playlists")
+    @OneToMany(mappedBy = "playlist")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     private List<Music> musicList;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -48,18 +49,86 @@ public class PlaylistService {
             return playlists;
         }
     }
-
-//    @Autowired
-//    public void setMusicRepository(MusicRepository musicRepository) {
-//        this.musicRepository = musicRepository;
-//    }
-    
-
-
-
+    public Playlist getPlaylist(Long playlistId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        } else{
+            return playlist;
+        }
+    }
+    public Playlist updatePlaylist(Long playlistId, Playlist playlistObject) {
+        LOGGER.info("service calling updatePlaylist ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        } else {
+            playlist.setDescription(playlistObject.getDescription());
+            playlist.setTitle(playlist.getTitle());
+            playlist.setUser(userDetails.getUser());
+            return playlistRepository.save(playlist);
+        }
+    }
+    public String deletePlaylist(Long playlistId) {
+        LOGGER.info("service calling deletePlaylist ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        } else {
+            playlistRepository.deleteById(playlistId);
+            return "Playlist with id " + playlistId + " has been successfully deleted";
+        }
+    }
     @Autowired
     public void setMusicRepository(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
+    }
+
+    public Music addPlaylistMusic(Long playlistId, Music musicObject) {
+        System.out.println("service calling addPlaylistMusic ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException(
+                    "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
+        }
+       Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
+        if (music != null) {
+            throw new InformationExistsException("Music with title " + music.getTitle() + " already exists");
+        }
+        musicObject.setUser(userDetails.getUser());
+        musicObject.setPlaylist(playlist);
+        return musicRepository.save(musicObject);
+    }
+
+    public List<Music> getPlaylistMusicList(Long playlistId){
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            return playlist.get().getMusicList();
+        } else {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        }
+    }
+    public Music getPlaylistMusic(Long playlistId, Long musicId) {
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            Optional<Music> music = musicRepository.findByPlaylistId(playlistId).stream().filter(
+                    p -> p.getId().equals(musicId)).findFirst();
+            if (music.isEmpty()) {
+                throw new InformationNotFoundException("Songs with " + musicId + " not found");
+            } else return music.get();
+        } else {
+            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
+        }
     }
 
     public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
@@ -78,17 +147,17 @@ public class PlaylistService {
         }
     }
 
-    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
-        try {
-            Music music = (musicRepository.findByPlaylistId(
-                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
-            musicRepository.deleteById(music.getId());
-        } catch (NoSuchElementException e) {
-            throw new InformationNotFoundException("music track or playlist not found");
-        }
-        return null;
-    }
+//    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//                .getPrincipal();
+//        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+//        try {
+//            Music music = (musicRepository.findByPlaylistId(
+//                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+//            musicRepository.deleteById(music.getId());
+//        } catch (NoSuchElementException e) {
+//            throw new InformationNotFoundException("music track or playlist not found");
+//        }
+//        return null;
+//    }
 }
