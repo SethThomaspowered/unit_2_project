@@ -1,6 +1,5 @@
 package com.example.ultimateplaylist.security;
 
-import com.example.ultimateplaylist.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
@@ -43,7 +42,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     // step2
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // only allowed urls without JWT
+        // only allowed urls with out JWT
         http.authorizeRequests().antMatchers(
                         "/auth/users", "/auth/users/login", "/auth/users/register").permitAll()
                 .anyRequest().authenticated()

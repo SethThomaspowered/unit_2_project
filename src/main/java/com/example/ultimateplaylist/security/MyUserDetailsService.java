@@ -1,6 +1,7 @@
-package com.example.ultimateplaylist.service;
+package com.example.ultimateplaylist.security;
+
 import com.example.ultimateplaylist.model.User;
-import com.example.ultimateplaylist.security.MyUserDetails;
+import com.example.ultimateplaylist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
