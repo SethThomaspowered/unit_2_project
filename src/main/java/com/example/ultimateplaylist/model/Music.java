@@ -35,7 +35,8 @@ public class Music {
     @ManyToMany
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private List<User> user;
+    private List<User> users;
+
 
     public Music() {}
 
@@ -71,6 +72,9 @@ public class Music {
         this.releaseDate = releaseDate;
     }
 
+//    public User setUser(User user){
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {
@@ -99,10 +103,8 @@ public class Music {
         isPublic = isPublic;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
+
+
 //    public void setUser(User user) {
 //        this.user = user;
 //    }

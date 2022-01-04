@@ -88,8 +88,24 @@ public class PlaylistService {
     public void setMusicRepository(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
-    
 
+    public Music createPlaylistMusic(Long playlistId, Music musicObject) {
+        System.out.println("service calling createPlaylistMusic ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException(
+                    "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
+        }
+       Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
+        if (music != null) {
+            throw new InformationExistsException("Music with title " + music.getTitle() + " already exists");
+        }
+        musicObject.setUser(userDetails.getUser());
+        musicObject.setPlaylist(playlist);
+        return musicRepository.save(musicObject);
+    }
 
 
 //    @Autowired
