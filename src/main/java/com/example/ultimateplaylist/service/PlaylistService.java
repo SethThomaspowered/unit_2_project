@@ -108,27 +108,24 @@ public class PlaylistService {
     }
 
 
-//    @Autowired
-//    public void setMusicRepository(MusicRepository musicRepository) {
-//        this.musicRepository = musicRepository;
-//    }
-//
-//    public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
-//        LOGGER.info("service calling updatePlaylistMusic ==>");
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        try {
-//            Music music = (musicRepository.findByPlaylistId(
-//                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
-//            music.setTitle(musicObject.getTitle());
-//            music.setLength(musicObject.getLength());
-//            music.setReleaseDate(musicObject.getReleaseDate());
-//            return musicRepository.save(music);
-//        } catch (NoSuchElementException e) {
-//            throw new InformationNotFoundException("music track or playlist not found");
-//        }
-//    }
-//
+
+
+    public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
+        LOGGER.info("service calling updatePlaylistMusic ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        try {
+            Music music = (musicRepository.findByPlaylistId(
+                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+            music.setTitle(musicObject.getTitle());
+            music.setLength(musicObject.getLength());
+            music.setReleaseDate(musicObject.getReleaseDate());
+            return musicRepository.save(music);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+    }
+
 //    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
 //        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
 //                .getPrincipal();
