@@ -37,7 +37,7 @@ public class User {
         this.userName = name;
         this.emailAddress = emailAddress;
         this.password = password;
-        this.playlist = playlist;
+        this.playlists = playlists;
     }
 
     public User() {
