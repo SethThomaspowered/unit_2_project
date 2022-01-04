@@ -29,20 +29,20 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
-//    // http://localhost:9092/api/playlists
-//    @GetMapping("/playlists")
-//    public List<Playlist> getPlaylists() {
-//        LOGGER.info("calling getPlaylists method from controller");
-//
-//        return playlistService.getPlaylists();
-//    }
-//
-    // http://localhost:9092/api/playlists/1
-    @GetMapping(path = "/playlists/{playlistId}")
-    public Playlist getPlaylist(@PathVariable Long playlistId) {
-        LOGGER.info("calling getPlaylist method from controller");
-        return playlistService.getPlaylist(playlistId);
+    // http://localhost:9092/api/playlists
+    @GetMapping("/playlists")
+    public List<Playlist> getPlaylists() {
+        LOGGER.info("calling getPlaylists method from controller");
+
+        return playlistService.getPlaylists();
     }
+
+    // http://localhost:9092/api/playlists/1
+//    @GetMapping(path = "/playlists/{playlistId}")
+//    public Playlist getPlaylist(@PathVariable Long playlistId) {
+//        LOGGER.info("calling getPlaylist method from controller");
+//        return playlistService.getPlaylist(playlistId);
+//    }
 
     // http://localhost:9092/api/playlists
     @PostMapping(path = "/playlists")
