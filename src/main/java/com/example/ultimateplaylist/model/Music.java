@@ -3,6 +3,7 @@ package com.example.ultimateplaylist.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "music")
@@ -27,12 +28,12 @@ public class Music {
     @JsonIgnore
     @ManyToMany
     @JoinColumn(name = "playlist_id")
-    private Playlist playlist;
+    private List<Playlist> playlists;
 
     @ManyToMany
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private List<User> user;
 
     public Music() {}
 
@@ -79,13 +80,13 @@ public class Music {
                 '}';
     }
 
-    public Playlist getPlaylist() {
-        return playlist;
+    public List<Playlist> getPlaylists() {
+        return playlists;
     }
 
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
-    }
+//    public void setPlaylist(Playlist playlist) {
+//        this.playlist = playlist;
+//    }
 
     public boolean getIsPublic() {
         return isPublic;
@@ -95,11 +96,11 @@ public class Music {
         isPublic = isPublic;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

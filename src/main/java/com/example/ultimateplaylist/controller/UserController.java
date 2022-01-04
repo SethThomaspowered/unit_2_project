@@ -29,9 +29,9 @@ public class UserController{
         LOGGER.info("calling loginUser method from controller");
         return userService.loginUser(loginRequest);
     }
-    @PutMapping("/{userId}")
-    public User updateUsername(@PathVariable(value="userId") Long userId, @RequestParam String newUsername){
-        LOGGER.info("calling updateUsername method from controller");
-        return userService.updateUsername(userId, newUsername);
-    }
+//    @PutMapping("/{userId}")
+//    public User updateUsername(@PathVariable(value="userId") Long userId, @RequestParam String newUsername){
+//        LOGGER.info("calling updateUsername method from controller");
+//        return userService.updateUsername(userId, newUsername);
+//    }
 }
