@@ -1,6 +1,8 @@
 package com.example.ultimateplaylist.service;
 
 import com.example.ultimateplaylist.exception.InformationExistsException;
+import com.example.ultimateplaylist.exception.InformationNotFoundException;
+import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Playlist;
 import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
@@ -10,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 @Service
@@ -35,9 +38,39 @@ public class PlaylistService {
     }
 
 
+
     @Autowired
     public void setMusicRepository(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
-    
+
+    public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
+        LOGGER.info("service calling updatePlaylistMusic ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        try {
+            Music music = (musicRepository.findByPlaylistId(
+                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+            music.setTitle(musicObject.getTitle());
+            music.setLength(musicObject.getLength());
+            music.setReleaseDate(musicObject.getReleaseDate());
+            return musicRepository.save(music);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+    }
+
+    public Music deleteCategoryRecipe(Long playlistId, Long musicId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+        try {
+            Music music = (musicRepository.findByPlaylistId(
+                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+            musicRepository.deleteById(music.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+        return null;
+    }
 }
