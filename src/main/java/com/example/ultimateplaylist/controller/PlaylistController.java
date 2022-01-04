@@ -37,19 +37,19 @@ public class PlaylistController {
 //        return playlistService.getPlaylists();
 //    }
 //
-//    // http://localhost:9092/api/playlists/1
-//    @GetMapping(path = "/playlists/{playlistId}")
-//    public Playlist getPlaylist(@PathVariable Long playlistId) {
-//        LOGGER.info("calling getPlaylist method from controller");
-//        return playlistService.getPlaylist(playlistId);
-//    }
-//
-//    // http://localhost:9092/api/playlists
-//    @PostMapping(path = "/playlists")
-//    public Playlist createPlaylist(@RequestBody Playlist playlistObject) {
-//        LOGGER.info("calling createPlaylist method from controller");
-//        return playlistService.createPlaylist(playlistObject);
-//    }
+    // http://localhost:9092/api/playlists/1
+    @GetMapping(path = "/playlists/{playlistId}")
+    public Playlist getPlaylist(@PathVariable Long playlistId) {
+        LOGGER.info("calling getPlaylist method from controller");
+        return playlistService.getPlaylist(playlistId);
+    }
+
+    // http://localhost:9092/api/playlists
+    @PostMapping(path = "/playlists")
+    public Playlist createPlaylist(@RequestBody Playlist playlistObject) {
+        LOGGER.info("calling createPlaylist method from controller");
+        return playlistService.createPlaylist(playlistObject);
+    }
 //
 //    // http://localhost:9092/api/playlists/1
 //    @PutMapping(path = "/playlists/{playlistId}")
