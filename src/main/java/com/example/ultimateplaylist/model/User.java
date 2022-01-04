@@ -23,7 +23,7 @@ public class User {
     private String password;
 
     // user can have more than one song
-    @ManyToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Music> musicList;
 

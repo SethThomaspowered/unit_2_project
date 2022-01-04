@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -89,8 +90,8 @@ public class PlaylistService {
         this.musicRepository = musicRepository;
     }
 
-    public Music createPlaylistMusic(Long playlistId, Music musicObject) {
-        System.out.println("service calling createPlaylistMusic ==>");
+    public Music addPlaylistMusic(Long playlistId, Music musicObject) {
+        System.out.println("service calling addPlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
@@ -107,28 +108,45 @@ public class PlaylistService {
         return musicRepository.save(musicObject);
     }
 
+    public List<Music> getPlaylistMusicList(Long playlistId){
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            return playlist.get().getMusicList();
+        } else {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        }
+    }
+    public Music getPlaylistMusic(Long playlistId, Long musicId) {
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            Optional<Music> music = musicRepository.findByPlaylistId(playlistId).stream().filter(
+                    p -> p.getId().equals(musicId)).findFirst();
+            if (music.isEmpty()) {
+                throw new InformationNotFoundException("Songs with " + musicId + " not found");
+            } else return music.get();
+        } else {
+            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
+        }
+    }
 
-//    @Autowired
-//    public void setMusicRepository(MusicRepository musicRepository) {
-//        this.musicRepository = musicRepository;
-//    }
-//
-//    public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
-//        LOGGER.info("service calling updatePlaylistMusic ==>");
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        try {
-//            Music music = (musicRepository.findByPlaylistId(
-//                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
-//            music.setTitle(musicObject.getTitle());
-//            music.setLength(musicObject.getLength());
-//            music.setReleaseDate(musicObject.getReleaseDate());
-//            return musicRepository.save(music);
-//        } catch (NoSuchElementException e) {
-//            throw new InformationNotFoundException("music track or playlist not found");
-//        }
-//    }
-//
+    public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
+        LOGGER.info("service calling updatePlaylistMusic ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        try {
+            Music music = (musicRepository.findByPlaylistId(
+                    playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
+            music.setTitle(musicObject.getTitle());
+            music.setLength(musicObject.getLength());
+            music.setReleaseDate(musicObject.getReleaseDate());
+            return musicRepository.save(music);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+    }
+
 //    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
 //        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
 //                .getPrincipal();
