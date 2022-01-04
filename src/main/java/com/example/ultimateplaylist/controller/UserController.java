@@ -5,10 +5,7 @@ import com.example.ultimateplaylist.model.User;
 import com.example.ultimateplaylist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
@@ -31,5 +28,10 @@ public class UserController{
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest){
         LOGGER.info("calling loginUser method from controller");
         return userService.loginUser(loginRequest);
+    }
+    @PutMapping("/{userId}")
+    public User updateUsername(@PathVariable(value="userId") Long userId, @RequestParam String newUsername){
+        LOGGER.info("calling updateUsername method from controller");
+        return userService.updateUsername(userId, newUsername);
     }
 }
