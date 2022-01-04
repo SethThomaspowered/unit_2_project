@@ -3,6 +3,7 @@ package com.example.ultimateplaylist.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "music")
@@ -27,12 +28,12 @@ public class Music {
     @JsonIgnore
     @ManyToMany
     @JoinColumn(name = "playlist_id")
-    private Playlist playlist;
+    private List<Playlist> playlist;
 
     @ManyToMany
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private List<User> user;
 
     public Music() {}
 

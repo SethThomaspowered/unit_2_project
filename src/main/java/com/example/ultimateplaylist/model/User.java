@@ -1,8 +1,11 @@
 package com.example.ultimateplaylist.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -18,6 +21,16 @@ public class User {
     @Column
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    // user can have more than one song
+    @ManyToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Music> musicList;
+
+    // user can have more than one playlist
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Playlist> playlists;
 
     public User(Long id, String name, String emailAddress, String password) {
         this.id = id;
