@@ -10,9 +10,7 @@ public class LoginResponse {
         LOGGER.info("creating jwt");
         this.jwt = jwt;
     }
-
-    public LoginResponse() {
-    }
+    
 
     public String getJwt() {
         return jwt;
