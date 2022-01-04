@@ -60,7 +60,7 @@ public class PlaylistService {
         }
     }
 
-    public Music deleteCategoryRecipe(Long playlistId, Long musicId) {
+    public Music deletePlaylistMusic(Long playlistId, Long musicId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
