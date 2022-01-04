@@ -22,7 +22,7 @@ public class Playlist {
     private String description;
 
     // one playlist can contain more than one song, one song can be on many playlists
-    //not sure if this is set up correctly...shoudl this be join to colummn?
+    //not sure if this is set up correctly...should this be join to colummn?
     @ManyToMany(mappedBy = "playlists")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
@@ -76,6 +76,7 @@ public class Playlist {
                 '}';
     }
 
+    // to get list of music within playlist
     public List<Music> getMusicList() {
         return musicList;
     }
