@@ -63,10 +63,10 @@ public class UserService {
         return userRepository.findUserByEmailAddress(email);
     }
     //Update username
-    public User updateUsername(Long userId, SUse newUsername){
-        LOGGER.info("calling updateUsername from service");
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-       return userRepository.save(newUsername);
-    }
+//    public User updateUsername(Long userId, SUse newUsername){
+//        LOGGER.info("calling updateUsername from service");
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//                .getPrincipal();
+//       return userRepository.save(newUsername);
+//    }
 }
