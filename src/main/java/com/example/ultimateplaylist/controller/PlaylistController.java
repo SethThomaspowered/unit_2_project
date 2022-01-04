@@ -23,10 +23,10 @@ public class PlaylistController {
     private playlistService playlistService;
     private static final Logger LOGGER = Logger.getLogger(PlaylistController.class.getName());
 
-//    @Autowired
-//    public void setPlaylistService(PlaylistService playlistService) {
-//        this.playlistService = playlistService;
-//    }
+    @Autowired
+    public void setPlaylistService(PlaylistService playlistService) {
+        this.playlistService = playlistService;
+    }
 
     // http://localhost:9092/api/playlists
     @GetMapping("/playlists")
@@ -73,34 +73,34 @@ public class PlaylistController {
         return playlistService.addPlaylistMusic(playlistId, musicObject);
     }
 
-//    // http://localhost:9092/api/categories/1/recipes/1
-//    @GetMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
-//    public Recipe getCategoryRecipe( @PathVariable(value = "categoryId") Long categoryId,
-//                                     @PathVariable(value = "recipeId") Long recipeId){
-//        LOGGER.info("calling getCategoryRecipe method from controller");
-//        return categoryService.getCategoryRecipe(categoryId, recipeId);
-//    }
-//
-//    // http://localhost:9092/api/categories/1/recipes
-//    @GetMapping(path = "/categories/{categoryId}/recipes")
-//    public List<Recipe> getCategoryRecipes( @PathVariable (value = "categoryId") Long categoryId){
-//        LOGGER.info("calling getCategoryRecipes method from controller");
-//        return categoryService.getCategoryRecipes(categoryId);
-//    }
-//
-//    // http://localhost:9092/api/categories/1/recipes/1
-//    @PutMapping(path= "/categories/{categoryId}/recipes/{recipeId}" )
-//    public Recipe updateCategoryRecipe( @PathVariable (value = "categoryId") Long categoryId,
-//                                        @PathVariable(value = "recipeId") Long recipeId,
-//                                        @RequestBody Recipe recipeObject){
-//        return categoryService.updateCategoryRecipe(categoryId,recipeId,recipeObject);
-//    }
-//
-//    // http://localhost:9092/api/categories/1/recipes/1
-//    @DeleteMapping(path = "/categories/{categoryId}/recipes/{recipeId}")
-//    public Recipe deleteCategoryRecipe(@PathVariable (value = "categoryId") Long categoryId,
-//                                       @PathVariable (value = "recipeId") Long recipeId){
-//        return categoryService.deleteCategoryRecipe(categoryId,recipeId);
-//    }
+    // http://localhost:9092/api/playlist/1/music/1
+    @GetMapping(path = "/playlists/{playlistId}/music/{musicId}")
+    public Music getPlaylistMusic( @PathVariable(value = "playlistId") Long playlistId,
+                                     @PathVariable(value = "musicId") Long musicId){
+        LOGGER.info("calling getPlaylistMusic method from controller");
+        return playlistService.getPlaylistMusic(playlistId, musicId);
+    }
+
+    // http://localhost:9092/api/playlist/1/music
+    @GetMapping(path = "/playlists/{playlistId}/music")
+    public List<Music> getPlaylistMusicList( @PathVariable (value = "playlistId") Long playlistId){
+        LOGGER.info("calling getPlaylistMusicList method from controller");
+        return playlistService.getPlaylistMusicList(playlistId);
+    }
+
+    // http://localhost:9092/api/playlist/1/music/1
+    @PutMapping(path= "/playlists/{playlistId}/music/{musicId}")
+    public Music updatePlaylistMusic( @PathVariable (value = "playlistId") Long playlistId,
+                                        @PathVariable(value = "musicId") Long musicId,
+                                        @RequestBody Music musicObject){
+        return playlistService.updatePlaylistMusic(playlistId,musicId,musicObject);
+    }
+
+    // http://localhost:9092/api/playlist/1/music/1
+    @DeleteMapping(path = "/playlists/{playlistId}/music/{musicId}")
+    public Music deletePlaylistMusic(@PathVariable (value = "playlistId") Long playlistId,
+                                       @PathVariable (value = "musicId") Long musicId){
+        return playlistService.deletePlaylistMusic(playlistId,musicId);
+    }
 
 }
