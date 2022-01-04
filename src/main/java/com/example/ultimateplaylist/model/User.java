@@ -7,7 +7,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name="users")
 public class User {
@@ -23,11 +22,17 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    // user can have more than one song
+    @ManyToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Music> musicList;
+
+    // user can have more than one playlist
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Playlist> playlist;
+    private List<Playlist> playlists;
 
-    public User(Long id, String name, String emailAddress, String password, List playlist) {
+    public User(Long id, String name, String emailAddress, String password) {
         this.id = id;
         this.userName = name;
         this.emailAddress = emailAddress;
