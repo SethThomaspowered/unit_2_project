@@ -58,21 +58,21 @@ public class PlaylistController {
         return playlistService.updatePlaylist(playlistId, playlistObject);
     }
 
-//    // http://localhost:9092/api/playlists/1
-//    @DeleteMapping("/playlists/{playlistId}")
-//    public Playlist deletePlaylist(@PathVariable(value = "playlistId") Long playlistId) {
-//        LOGGER.info("calling deletePlaylist method from controller");
-//        return playlistService.deletePlaylist(playlistId);
-//    }
-//
-//    // http://localhost:9092/api/playlist/1/music
-//    @PostMapping("/playlists/{playlistId}/music")
-//    public Music addPlaylistMusic(
-//            @PathVariable(value = "playlistId") Long playlistId,
-//            @RequestBody Music musicObject) {
-//        LOGGER.info("calling addPlaylistMusic method from controller");
-//        return playlistService.addPlaylistMusic(playlistId, musicObject);
-//    }
+    // http://localhost:9092/api/playlists/1
+    @DeleteMapping("/playlists/{playlistId}")
+    public String deletePlaylist(@PathVariable(value = "playlistId") Long playlistId) {
+        LOGGER.info("calling deletePlaylist method from controller");
+        return playlistService.deletePlaylist(playlistId);
+    }
+
+    // http://localhost:9092/api/playlist/1/music
+    @PostMapping("/playlists/{playlistId}/music")
+    public Music addPlaylistMusic(
+            @PathVariable(value = "playlistId") Long playlistId,
+            @RequestBody Music musicObject) {
+        LOGGER.info("calling addPlaylistMusic method from controller");
+        return playlistService.addPlaylistMusic(playlistId, musicObject);
+    }
 //
 //    // http://localhost:9092/api/playlist/1/music/1
 //    @GetMapping(path = "/playlists/{playlistId}/music/{musicId}")

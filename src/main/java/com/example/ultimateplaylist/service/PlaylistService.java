@@ -84,10 +84,10 @@ public class PlaylistService {
             return "Playlist with id " + playlistId + " has been successfully deleted";
         }
     }
-//    @Autowired
-//    public void setMusicRepository(MusicRepository musicRepository) {
-//        this.musicRepository = musicRepository;
-//    }
+    @Autowired
+    public void setMusicRepository(MusicRepository musicRepository) {
+        this.musicRepository = musicRepository;
+    }
     
 
 
