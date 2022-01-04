@@ -2,7 +2,7 @@ package com.example.ultimateplaylist.controller;
 
 import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Playlist;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.ultimateplaylist.service.PlaylistService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class PlaylistController {
 
-    private playlistService playlistService;
+    private PlaylistService playlistService;
     private static final Logger LOGGER = Logger.getLogger(PlaylistController.class.getName());
 
     @Autowired
@@ -45,7 +45,7 @@ public class PlaylistController {
 
     // http://localhost:9092/api/playlists
     @PostMapping(path = "/playlists")
-    public Playlist createCategory(@RequestBody Playlist playlistObject) {
+    public Playlist createPlaylist(@RequestBody Playlist playlistObject) {
         LOGGER.info("calling createPlaylist method from controller");
         return playlistService.createPlaylist(playlistObject);
     }
