@@ -89,8 +89,8 @@ public class PlaylistService {
         this.musicRepository = musicRepository;
     }
 
-    public Music createPlaylistMusic(Long playlistId, Music musicObject) {
-        System.out.println("service calling createPlaylistMusic ==>");
+    public Music addPlaylistMusic(Long playlistId, Music musicObject) {
+        System.out.println("service calling addPlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
