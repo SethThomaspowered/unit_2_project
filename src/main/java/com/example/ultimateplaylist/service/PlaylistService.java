@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -107,8 +108,28 @@ public class PlaylistService {
         return musicRepository.save(musicObject);
     }
 
-
-
+    public List<Music> getPlaylistMusicList(Long playlistId){
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            return playlist.get().getMusicList();
+        } else {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        }
+    }
+    public Music getPlaylistMusic(Long playlistId, Long musicId) {
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            Optional<Music> music = musicRepository.findByPlaylistId(playlistId).stream().filter(
+                    p -> p.getId().equals(musicId)).findFirst();
+            if (music.isEmpty()) {
+                throw new InformationNotFoundException("Songs with " + musicId + " not found");
+            } else return music.get();
+        } else {
+            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
+        }
+    }
 
     public Music updatePlaylistMusic(Long playlistId, Long musicId, Music musicObject) {
         LOGGER.info("service calling updatePlaylistMusic ==>");
