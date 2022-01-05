@@ -28,6 +28,11 @@ public class Artist {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Music> musicList;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
     public Artist(){
     }
 
@@ -36,6 +41,7 @@ public class Artist {
         this.name = name;
         this.artistType = artistType;
         this.isPublic = isPublic;
+        this.user = user;
     }
 
     public Long getId() {
@@ -60,5 +66,13 @@ public class Artist {
 
     public void setArtistType(String artistType) {
         this.artistType = artistType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
