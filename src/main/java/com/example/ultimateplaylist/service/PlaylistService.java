@@ -1,3 +1,4 @@
+
 package com.example.ultimateplaylist.service;
 
 import com.example.ultimateplaylist.exception.InformationExistsException;
@@ -7,6 +8,7 @@ import com.example.ultimateplaylist.model.Playlist;
 import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
 import com.example.ultimateplaylist.security.MyUserDetails;
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -68,7 +70,7 @@ public class PlaylistService {
             throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
         } else {
             playlist.setDescription(playlistObject.getDescription());
-            playlist.setTitle(playlist.getTitle());
+            playlist.setTitle(playlistObject.getTitle());
             playlist.setUser(userDetails.getUser());
             return playlistRepository.save(playlist);
         }
@@ -91,7 +93,7 @@ public class PlaylistService {
     }
 
     public Music addPlaylistMusic(Long playlistId, Music musicObject) {
-        LOGGER.info("service calling addPlaylistMusic ==>");
+        System.out.println("service calling addPlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
@@ -105,7 +107,6 @@ public class PlaylistService {
         }
         musicObject.setUser(userDetails.getUser());
         musicObject.setPlaylist(playlist);
-
         return musicRepository.save(musicObject);
     }
 
@@ -136,6 +137,7 @@ public class PlaylistService {
         LOGGER.info("service calling updatePlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
         try {
             Music music = (musicRepository.findByPlaylistId(
                     playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
@@ -151,7 +153,7 @@ public class PlaylistService {
     public Music deletePlaylistMusic(Long playlistId, Long musicId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
         try {
             Music music = (musicRepository.findByPlaylistId(
                     playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
