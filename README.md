@@ -28,8 +28,8 @@ MVP Models
 Nice to Have Models
 - Podcast
 - Audiobooks
-- Artists
-- Media ypes
+- Artists (In Queue)
+- Media ypes (In Queue)
 
 ## EndPoints
 
