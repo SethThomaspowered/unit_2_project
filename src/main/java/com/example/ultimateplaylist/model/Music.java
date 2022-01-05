@@ -37,6 +37,11 @@ public class Music {
     @JsonIgnore
     private User user;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
 
     public Music() {
     }
