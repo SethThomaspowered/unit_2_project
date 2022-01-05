@@ -5,7 +5,11 @@ import com.example.ultimateplaylist.model.User;
 import com.example.ultimateplaylist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
 
@@ -19,6 +23,10 @@ public class UserController{
     public void setUserService(UserService userService){
         this.userService = userService;
     }
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @PostMapping("/register")
     public User createUser(@RequestBody User userObject){
         LOGGER.info("calling createUser method from controller");

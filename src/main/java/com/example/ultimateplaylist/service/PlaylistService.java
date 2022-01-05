@@ -99,7 +99,7 @@ public class PlaylistService {
             throw new InformationNotFoundException(
                     "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
         }
-       Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
+        Music music = musicRepository.findByTitleAndUserId(musicObject.getTitle(), userDetails.getUser().getId());
         if (music != null) {
             throw new InformationExistsException("Music with title " + music.getTitle() + " already exists");
         }
