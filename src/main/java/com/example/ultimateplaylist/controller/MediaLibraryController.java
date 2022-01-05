@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 public class MediaLibraryController {
     private MediaLibraryService mediaLibraryService;
     private static final Logger LOGGER=Logger.getLogger(MediaLibraryController.class.getName());
+    @Autowired
     public void setMediaLibraryService(MediaLibraryService mediaLibraryService){
         this.mediaLibraryService =mediaLibraryService;
     }
@@ -25,5 +26,9 @@ public class MediaLibraryController {
     public Media addNewMedia(@RequestBody Media mediaObject){
         LOGGER.info("calling addNewMedia from controller");
         return mediaLibraryService.addNewMedia(mediaObject);
+    }
+    @GetMapping("/library/{mediatype}")
+    public List<Media> getByMediaType(@PathVariable("mediatype") String mediaType){
+        return mediaLibraryService.getByMediaType(mediaType);
     }
 }
