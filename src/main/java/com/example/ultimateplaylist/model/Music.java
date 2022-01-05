@@ -38,7 +38,18 @@ public class Music {
     private User user;
 
 
-    public Music() {}
+    public Music() {
+    }
+
+    public Music(Long id, String title, String length, String releaseDate, boolean isPublic, Playlist playlist, User user) {
+        this.id = id;
+        this.title = title;
+        this.length = length;
+        this.releaseDate = releaseDate;
+        this.isPublic = isPublic;
+        this.playlist = playlist;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
@@ -72,45 +83,27 @@ public class Music {
         this.releaseDate = releaseDate;
     }
 
-//    public User setUser(User user){
-//        this.user = user;
-//    }
-
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", length='" + length + '\'' +
-                ", release date='" + releaseDate+ '\'' +
-                '}';
+    public boolean isPublic() {
+        return isPublic;
     }
 
-    // to get all playlist music track is in
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
+
     public Playlist getPlaylist() {
         return playlist;
     }
 
-//    public void setPlaylist(Playlist playlist) {
-//        this.playlist = playlist;
-//    }
-
-    public boolean getIsPublic() {
-        return isPublic;
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
     }
 
-    public void setIsPublic(boolean isPublic) {
-        isPublic = isPublic;
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {
+        this.user = user;
     }
-
-    public void setPlaylist(Playlist playlist) {
-    }
-
-
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 }

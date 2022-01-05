@@ -91,7 +91,7 @@ public class PlaylistService {
     }
 
     public Music addPlaylistMusic(Long playlistId, Music musicObject) {
-        System.out.println("service calling addPlaylistMusic ==>");
+        LOGGER.info("service calling addPlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
@@ -105,6 +105,7 @@ public class PlaylistService {
         }
         musicObject.setUser(userDetails.getUser());
         musicObject.setPlaylist(playlist);
+
         return musicRepository.save(musicObject);
     }
 
