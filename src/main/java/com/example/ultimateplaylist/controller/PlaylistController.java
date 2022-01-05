@@ -32,6 +32,11 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
+    @Autowired
+    public void setArtistService(ArtistService artistService) {
+        this.artistService = artistService;
+    }
+
     // http://localhost:9092/api/playlists
     @GetMapping("/playlists")
     public List<Playlist> getPlaylists() {
@@ -111,13 +116,13 @@ public class PlaylistController {
     // http://localhost:9092/api/artists
     @PostMapping(path = "/artists")
     public Artist createArtist(@RequestBody Artist artistObject) {
-        LOGGER.info("calling createPlaylist method from controller");
+        LOGGER.info("calling createArtist method from controller");
         return artistService.createArtist(artistObject);
     }
 
     //     http://localhost:9092/api/artists/1
     @GetMapping(path = "/artists/{artistId}")
-    public Artist getArtist(@PathVariable Long artistId) {
+    public Artist getArtist(@PathVariable (value = "artistId") Long artistId) {
         LOGGER.info("calling getArtist method from controller");
         return artistService.getArtist(artistId);
     }
