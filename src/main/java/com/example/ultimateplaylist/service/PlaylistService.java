@@ -7,6 +7,7 @@ import com.example.ultimateplaylist.model.Playlist;
 import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
 import com.example.ultimateplaylist.security.MyUserDetails;
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -135,6 +136,7 @@ public class PlaylistService {
         LOGGER.info("service calling updatePlaylistMusic ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
         try {
             Music music = (musicRepository.findByPlaylistId(
                     playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
@@ -150,7 +152,7 @@ public class PlaylistService {
     public Music deletePlaylistMusic(Long playlistId, Long musicId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        //Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
         try {
             Music music = (musicRepository.findByPlaylistId(
                     playlistId).stream().filter(p -> p.getId().equals(musicId)).findFirst()).get();
