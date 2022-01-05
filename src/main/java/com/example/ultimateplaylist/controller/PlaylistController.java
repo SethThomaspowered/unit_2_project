@@ -65,7 +65,7 @@ public class PlaylistController {
         return playlistService.deletePlaylist(playlistId);
     }
 
-    // http://localhost:9092/api/playlist/1/music
+    // http://localhost:9092/api/playlists/1/music
     @PostMapping("/playlists/{playlistId}/music")
     public Music addPlaylistMusic(
             @PathVariable(value = "playlistId") Long playlistId,
@@ -74,7 +74,7 @@ public class PlaylistController {
         return playlistService.addPlaylistMusic(playlistId, musicObject);
     }
 
-    // http://localhost:9092/api/playlist/1/music/1
+    // http://localhost:9092/api/playlists/1/music/1
     @GetMapping(path = "/playlists/{playlistId}/music/{musicId}")
     public Music getPlaylistMusic( @PathVariable(value = "playlistId") Long playlistId,
                                      @PathVariable(value = "musicId") Long musicId){
@@ -82,7 +82,7 @@ public class PlaylistController {
         return playlistService.getPlaylistMusic(playlistId, musicId);
     }
 
-    // http://localhost:9092/api/playlist/1/music
+    // http://localhost:9092/api/playlists/1/music
     @GetMapping(path = "/playlists/{playlistId}/music")
     public List<Music> getPlaylistMusicList( @PathVariable (value = "playlistId") Long playlistId){
         LOGGER.info("calling getPlaylistMusicList method from controller");
@@ -90,7 +90,7 @@ public class PlaylistController {
     }
 
     
-    // http://localhost:9092/api/playlist/1/music/1
+    // http://localhost:9092/api/playlists/1/music/1
     @PutMapping(path= "/playlists/{playlistId}/music/{musicId}")
     public Music updatePlaylistMusic( @PathVariable (value = "playlistId") Long playlistId,
                                         @PathVariable(value = "musicId") Long musicId,
@@ -98,7 +98,7 @@ public class PlaylistController {
         return playlistService.updatePlaylistMusic(playlistId,musicId,musicObject);
     }
 
-    // http://localhost:9092/api/playlist/1/music/1
+    // http://localhost:9092/api/playlists/1/music/1
     @DeleteMapping(path = "/playlists/{playlistId}/music/{musicId}")
     public Music deletePlaylistMusic(@PathVariable (value = "playlistId") Long playlistId,
                                        @PathVariable (value = "musicId") Long musicId){
