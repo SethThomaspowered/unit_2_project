@@ -75,4 +75,13 @@ public class Artist {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", artist type='" + artistType + '\'' +
+                '}';
+    }
 }

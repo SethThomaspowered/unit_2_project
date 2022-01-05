@@ -121,4 +121,12 @@ public class PlaylistController {
         LOGGER.info("calling getArtist method from controller");
         return artistService.getArtist(artistId);
     }
+
+    // http://localhost:9092/api/artists
+    @GetMapping("/artists")
+    public List<Artist> getArtists() {
+        LOGGER.info("calling getArtists method from controller");
+
+        return artistService.getArtists();
+    }
 }
