@@ -40,6 +40,17 @@ public class User {
         this.playlists = playlists;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", password='" + password + '\'' +
+                ", playlists='"+ playlists + '\'' +
+                '}';
+    }
+
     public User() {
 
     }

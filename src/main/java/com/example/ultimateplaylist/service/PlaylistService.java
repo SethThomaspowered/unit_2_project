@@ -68,7 +68,7 @@ public class PlaylistService {
             throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
         } else {
             playlist.setDescription(playlistObject.getDescription());
-            playlist.setTitle(playlist.getTitle());
+            playlist.setTitle(playlistObject.getTitle());
             playlist.setUser(userDetails.getUser());
             return playlistRepository.save(playlist);
         }
