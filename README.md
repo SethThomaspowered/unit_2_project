@@ -35,39 +35,33 @@ Nice to Have Models
 
 Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 ------------ |------------ | ------------- | ------------- | ------------- | -------------
-|GET	| gets all Users	|/auth/user/admin/getusers	|None	|None	|ADMIN
 |GET	|get single User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|POST	|create single User	|/api/register	|User Details	|None	|PUBLIC
-|POST	|login User	|/api/login	|User login Info	|None	|PUBLIC
-|PUT	|update User	|/auth/user/...	|User Details	|Authorization Bearer TOKEN	|PRIVATE
-|DELETE	|delete User	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|GET	|gets all Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|GET	|get single Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|POST	|create single Playlist	|/auth/user/...	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
-|PUT	|update Playlist	|/auth/user/...	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
-|DELETE	|delete Playlist	|/auth/user/...	|None	|Authorization Bearer TOKEN	|PRIVATE
-|GET	|get all Podcasts	|/api/artists/{artistId}/podcasts	|None	|None	|PUBLIC
-|GET	|get single Podcast	|/api/artists/{artistId}/pidcasts/{podcastId}	|None	|None	|PUBLIC
-|POST	|create single Podcast	|/auth/user/admin/...	|Podcast info	|None	|ADMIN
-|PUT	|update Podcast	|/auth/user/admin/...	|Podcast info	|Authorization Bearer TOKEN	|ADMIN
-|DELETE	|delete Podcast	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|POST	|create single User	|/auth/users/register	|User Details	|None	|PUBLIC
+|POST	|login User	|/auth/users/login	|User login Info	|None	|PUBLIC
+|GET	|gets all Playlist	|/api/playlists	|None	|Authorization Bearer TOKEN	|PRIVATE
+|GET	|get single Playlist	|/api/playlists/{playlistId}	|None	|Authorization Bearer TOKEN	|PRIVATE
+|POST	|create single Playlist	|/api/playlists	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
+|PUT	|update Playlist	|/api/playlists/{playlistId}	|Playlist info	|Authorization Bearer TOKEN	|PRIVATE
+|DELETE	|delete Playlist	|/api/library/{mediaId}/podcast/{podcastId}	|None	|Authorization Bearer TOKEN	|PRIVATE
+|GET	|get all Podcasts	|/api/library/1/podcast	|None	|None	|PUBLIC
+|GET	|get single Podcast	|/api/library/1/podcast/{podcastId}	|None	|None	|PUBLIC
+|POST	|create single Podcast	|/api/library/{mediaId}/podcast	|Podcast info	|None	|ADMIN
+|DELETE	|delete Podcast	|/api/library/{mediaId}/podcast/{podcastId}	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get all Music	|/api/artists/{artistId}/songs	|None	|None	|PUBLIC
-|GET	|get single Music track	|/api/artists/{artistId}/songs/{songId}	|None	|None	|PUBLIC
-|POST	|create  Music track	|/auth/user/admin/...	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
-|PUT	|update Music track	|/auth/user/admin/...	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
-|DELETE	|delete Music track	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get single Music track	|/api/playlists/{playlistId}/music/{musicId} |None	|None	|PUBLIC
+|POST	|create  Music track	|/api/playlists/{playlistId}/music	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
+|PUT	|update Music track	|/api/playlists/{playlistId}/music/{musicId}	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
+|DELETE	|delete Music track	|/api/playlists/{playlistId}/music/{musicId}	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get all Audiobooks	|/api/artists/{artistId}/book	|None	|None	|PUBLIC
 |GET	|get single Audiobook	|/api/artists/{artistId}/book/{bookId}	|None	|None	|PUBLIC
 |POST	|create Audiobook	|/auth/user/admin/...	|Audiobook info	|Authorization Bearer TOKEN	|ADMIN
 |PUT	|update Audiobook	|/auth/user/admin/...	|Audiobook info	|Authorization Bearer TOKEN	|ADMIN
 |DELETE	|delete Audiobook	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
-|GET	|get all Artists	|/api/artists/	|None	|None	|PUBLIC
+|GET	|get all Artists	|/api/artists	|None	|None	|PUBLIC
 |GET	|get single Artist	|/api/artists/{artistId}	|None	|None	|PUBLIC
-|POST	|create Artists	|/auth/user/admin/...	|Artist Details	|Authorization Bearer TOKEN	|ADMIN
-|DELETE	|delete Artists	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
-|GET	|get all Media Types	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
-|GET	|get single Media type	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
-|POST	|create Media Type	|/auth/user/admin/...	|Media Type Info	|Authorization Bearer TOKEN	|ADMIN
-|DELETE	|delete Media Type	|/auth/user/admin/...	|None	|Authorization Bearer TOKEN	|ADMIN
+|POST	|create Artists	|/api/artists	|Artist Details	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get all Media Types	|/api/library	|None	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get by single Media type	|/api/library/{mediaType}	|None	|Authorization Bearer TOKEN	|ADMIN
+|POST	|create Media Type	|/api/library	|Media Type Info	|Authorization Bearer TOKEN	|ADMIN
 
 
