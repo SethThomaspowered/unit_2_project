@@ -25,7 +25,7 @@ public class Podcast {
     @Column
     private String series;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "podcast_id")
     private Media media;
 

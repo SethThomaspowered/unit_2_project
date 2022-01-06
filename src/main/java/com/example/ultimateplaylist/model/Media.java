@@ -1,6 +1,10 @@
 package com.example.ultimateplaylist.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "media")
@@ -11,25 +15,24 @@ public class Media {
     private Long id;
     @Column
     private String mediaType;
-    @Column
-    private String title;
 
 
-    @OneToOne
-    @JoinColumn(name = "podcast_id")
-    private Podcast podcast;
+
+    @OneToMany(mappedBy = "media", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Podcast> podcast;
 
     public Media() {
     }
 
-    public Media(Long id, String mediaType, String title, Podcast podcast) {
+    public Media(Long id, String mediaType, List<Podcast> podcast) {
         this.id = id;
         this.mediaType = mediaType;
-        this.title = title;
+
         this.podcast = podcast;
     }
 
-    public Podcast getPodcast() {
+    public List<Podcast> getPodcast() {
         return podcast;
     }
 
@@ -49,15 +52,9 @@ public class Media {
         this.mediaType = mediaType;
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
-    public void setPodcast(Podcast podcast) {
+    public void setPodcast(List<Podcast> podcast) {
         this.podcast = podcast;
     }
 }
