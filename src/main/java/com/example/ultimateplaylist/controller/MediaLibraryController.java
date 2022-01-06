@@ -37,8 +37,8 @@ public class MediaLibraryController {
     @PostMapping("/library/{mediaId}/podcast")
     public Podcast addNewPodcast(
             @PathVariable(value = "mediaId") Long mediaId,
-            @RequestBody Podcast podcastObject) {
+            @RequestBody Podcast podcast) {
         LOGGER.info("calling addPlaylistMusic method from controller");
-        return mediaLibraryService.addNewPodcast(mediaId, podcastObject);
+        return mediaLibraryService.addNewPodcast(mediaId, podcast);
     }
 }

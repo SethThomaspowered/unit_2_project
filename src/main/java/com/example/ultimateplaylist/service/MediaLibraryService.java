@@ -56,16 +56,15 @@ public class MediaLibraryService {
     }
     public Podcast addNewPodcast(Long mediaId, Podcast podcastObject) {
         LOGGER.info("service calling addNewPodcast ==>");
+        if (mediaId == 1) {
+            Podcast podcast = podcastRepository.findByTitle(podcastObject.getTitle());
+            if (podcast != null) {
+                throw new InformationExistsException("Podcast with title " + podcast.getTitle() + " already exists");
+            }
+            return podcastRepository.save(podcastObject);
+        }else {
+            throw new InformationNotFoundException("Media type chosen is not a podcast");
+        }
 
-        Media media = mediaRepository.getById(mediaId);
-        if (media == null) {
-            throw new InformationNotFoundException(
-                    "Media type with id " + mediaId + " does not exist");
-        }
-        Podcast podcast = podcastRepository.findByTitle(podcastObject.getTitle());
-        if (podcast != null) {
-            throw new InformationExistsException("Podcast with title " + podcast.getTitle() + " already exists");
-        }
-        return podcastRepository.save(podcastObject);
     }
 }
