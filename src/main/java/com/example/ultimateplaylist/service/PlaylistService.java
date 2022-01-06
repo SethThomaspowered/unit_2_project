@@ -5,6 +5,7 @@ import com.example.ultimateplaylist.exception.InformationExistsException;
 import com.example.ultimateplaylist.exception.InformationNotFoundException;
 import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Playlist;
+import com.example.ultimateplaylist.repository.ArtistRepository;
 import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
 import com.example.ultimateplaylist.security.MyUserDetails;
@@ -144,6 +145,7 @@ public class PlaylistService {
             music.setTitle(musicObject.getTitle());
             music.setLength(musicObject.getLength());
             music.setReleaseDate(musicObject.getReleaseDate());
+            music.setArtist(musicObject.getArtist());
             return musicRepository.save(music);
         } catch (NoSuchElementException e) {
             throw new InformationNotFoundException("music track or playlist not found");

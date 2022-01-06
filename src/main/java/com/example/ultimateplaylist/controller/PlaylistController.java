@@ -1,7 +1,9 @@
 package com.example.ultimateplaylist.controller;
 
+import com.example.ultimateplaylist.model.Artist;
 import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Playlist;
+import com.example.ultimateplaylist.service.ArtistService;
 import com.example.ultimateplaylist.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +24,17 @@ import java.util.logging.Logger;
 public class PlaylistController {
 
     private PlaylistService playlistService;
+    private ArtistService artistService;
     private static final Logger LOGGER = Logger.getLogger(PlaylistController.class.getName());
 
     @Autowired
     public void setPlaylistService(PlaylistService playlistService) {
         this.playlistService = playlistService;
+    }
+
+    @Autowired
+    public void setArtistService(ArtistService artistService) {
+        this.artistService = artistService;
     }
 
     // http://localhost:9092/api/playlists
@@ -105,4 +113,25 @@ public class PlaylistController {
         return playlistService.deletePlaylistMusic(playlistId,musicId);
     }
 
+    // http://localhost:9092/api/artists
+    @PostMapping(path = "/artists")
+    public Artist createArtist(@RequestBody Artist artistObject) {
+        LOGGER.info("calling createArtist method from controller");
+        return artistService.createArtist(artistObject);
+    }
+
+    //     http://localhost:9092/api/artists/1
+    @GetMapping(path = "/artists/{artistId}")
+    public Artist getArtist(@PathVariable (value = "artistId") Long artistId) {
+        LOGGER.info("calling getArtist method from controller");
+        return artistService.getArtist(artistId);
+    }
+
+    // http://localhost:9092/api/artists
+    @GetMapping("/artists")
+    public List<Artist> getArtists() {
+        LOGGER.info("calling getArtists method from controller");
+
+        return artistService.getArtists();
+    }
 }
