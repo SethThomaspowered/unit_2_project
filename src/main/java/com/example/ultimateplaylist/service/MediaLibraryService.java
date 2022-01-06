@@ -1,7 +1,10 @@
 package com.example.ultimateplaylist.service;
 
 import com.example.ultimateplaylist.exception.InformationExistsException;
+import com.example.ultimateplaylist.exception.InformationNotFoundException;
 import com.example.ultimateplaylist.model.Media;
+import com.example.ultimateplaylist.model.Music;
+import com.example.ultimateplaylist.model.Playlist;
 import com.example.ultimateplaylist.model.Podcast;
 import com.example.ultimateplaylist.repository.MediaRepository;
 import com.example.ultimateplaylist.repository.PodcastRepository;
@@ -51,13 +54,18 @@ public class MediaLibraryService {
         Media media = mediaRepository.getById(mediaId);
         return media;
     }
-    public Podcast addNewPodcast(@RequestBody Podcast podcastObject){
-        LOGGER.info("calling addNewPodcast method from service");
-        Podcast podcast = podcastRepository.findByTitle(podcastObject.getTitle());
-        if (podcast != null){
-            throw new InformationExistsException("Podcast with title " + podcastObject.getTitle() + " already exists");
-        }else{
-            return podcastRepository.save(podcast);
+    public Podcast addNewPodcast(Long mediaId, Podcast podcastObject) {
+        LOGGER.info("service calling addNewPodcast ==>");
+
+        Media media = mediaRepository.getById(mediaId);
+        if (media == null) {
+            throw new InformationNotFoundException(
+                    "Media type with id " + mediaId + " does not exist");
         }
+        Podcast podcast = podcastRepository.findByTitle(podcastObject.getTitle());
+        if (podcast != null) {
+            throw new InformationExistsException("Podcast with title " + podcast.getTitle() + " already exists");
+        }
+        return podcastRepository.save(podcastObject);
     }
 }

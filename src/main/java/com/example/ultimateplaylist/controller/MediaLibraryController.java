@@ -1,6 +1,7 @@
 package com.example.ultimateplaylist.controller;
 
 import com.example.ultimateplaylist.model.Media;
+import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Podcast;
 import com.example.ultimateplaylist.service.MediaLibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,12 @@ public class MediaLibraryController {
     public List<Media> getByMediaType(@PathVariable("mediaType") String mediaType){
         return mediaLibraryService.getByMediaType(mediaType);
     }
-    @PostMapping("/library/1/podcast")
-    public Podcast addNewPodcast(@RequestBody Podcast podcastObject){
-        LOGGER.info("calling addNewMedia method from controller");
-        return mediaLibraryService.addNewPodcast(podcastObject);
+    // http://localhost:9092/api/library/1/podcast
+    @PostMapping("/library/{mediaId}/podcast")
+    public Podcast addNewPodcast(
+            @PathVariable(value = "mediaId") Long mediaId,
+            @RequestBody Podcast podcastObject) {
+        LOGGER.info("calling addPlaylistMusic method from controller");
+        return mediaLibraryService.addNewPodcast(mediaId, podcastObject);
     }
 }

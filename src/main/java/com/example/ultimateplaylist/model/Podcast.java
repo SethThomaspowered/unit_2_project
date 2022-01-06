@@ -3,7 +3,7 @@ package com.example.ultimateplaylist.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="podcasts")
+@Table
 public class Podcast {
     @Id
     @Column
@@ -12,6 +12,16 @@ public class Podcast {
 
     @Column
     private String title;
+
+    public Podcast(Long id, String title, String length, String releaseDate, boolean isPublic, String series, Media media) {
+        this.id = id;
+        this.title = title;
+        this.length = length;
+        this.releaseDate = releaseDate;
+        this.isPublic = isPublic;
+        this.series = series;
+        this.media = media;
+    }
 
     @Column
     private String length;
@@ -29,14 +39,7 @@ public class Podcast {
     @JoinColumn(name = "podcast_id")
     private Media media;
 
-    public Podcast(Long id, String title, String length, String releaseDate, boolean isPublic, String series, Media media) {
-        this.id = id;
-        this.title = title;
-        this.length = length;
-        this.releaseDate = releaseDate;
-        this.isPublic = isPublic;
-        this.series = series;
-        this.media = media;
+    public Podcast() {
     }
 
     public Long getId() {
@@ -94,9 +97,4 @@ public class Podcast {
     public void setMedia(Media media) {
         this.media = media;
     }
-
-    public Podcast() {
-
-    }
-
 }
