@@ -18,7 +18,7 @@ You are listening to your favorite podcast when you hear about a new book or alb
 
 
 ## ERD
-![Media Library ERD (3)](https://user-images.githubusercontent.com/72534273/148095231-e0184dff-8422-4ce3-aaf3-9110955ebf2b.png)
+![Media Library ERD (4)](https://user-images.githubusercontent.com/72534273/148461142-6dae3c54-5397-475f-a710-546c7b5ea617.png)
 
 MVP Models
 - Users
