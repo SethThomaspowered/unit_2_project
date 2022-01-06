@@ -26,10 +26,10 @@ MVP Models
 - Music
 
 Nice to Have Models
-- Podcast
+- Podcast (complete)
 - Audiobooks
-- Artists (In Queue)
-- Media ypes (In Queue)
+- Artists (Complete)
+- Media ypes (complete)
 
 ## EndPoints
 
