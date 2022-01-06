@@ -54,6 +54,19 @@ public class Music {
         this.isPublic = isPublic;
         this.playlist = playlist;
         this.user = user;
+        this.artist = artist;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", length='" + length + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", playlist='"+ playlist + '\'' +
+                ", artist='"+ artist + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -110,5 +123,13 @@ public class Music {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

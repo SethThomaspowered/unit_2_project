@@ -47,8 +47,6 @@ public class ArtistService {
     }
 
     public Artist getArtist(Long artistId) {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
         Artist artist = artistRepository.getById(artistId);
         if (artist == null) {
             throw new InformationNotFoundException("Artist with id " + artistId + " not found");
