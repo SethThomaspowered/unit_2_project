@@ -32,7 +32,7 @@ public class MediaLibraryController {
     public List<Media> getByMediaType(@PathVariable("mediaType") String mediaType){
         return mediaLibraryService.getByMediaType(mediaType);
     }
-    @PostMapping("/library/podcast")
+    @PostMapping("/library/1/podcast")
     public Podcast addNewPodcast(@RequestBody Podcast podcastObject){
         LOGGER.info("calling addNewMedia method from controller");
         return mediaLibraryService.addNewPodcast(podcastObject);

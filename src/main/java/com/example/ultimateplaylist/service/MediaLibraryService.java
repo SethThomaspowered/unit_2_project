@@ -32,7 +32,7 @@ public class MediaLibraryService {
         LOGGER.info("service calling addNewMedia ==>");
 //        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
 //                .getPrincipal();
-        Media media = mediaRepository.findByTitle(mediaObject.getTitle());
+        Media media = mediaRepository.findByMediaType(mediaObject.getMediaType());
         if (media != null) {
             throw new InformationExistsException("This media already exists.");
         }else{
