@@ -47,9 +47,9 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |GET	|get single Podcast	|/api/library/1/podcast/{podcastId}	|None	|None	|PUBLIC
 |POST	|create single Podcast	|/api/library/{mediaId}/podcast	|Podcast info	|None	|ADMIN
 |DELETE	|delete Podcast	|/api/library/{mediaId}/podcast/{podcastId}	|None	|Authorization Bearer TOKEN	|ADMIN
-|GET	|get all Music	|/api/artists/{artistId}/songs	|None	|None	|PUBLIC
-|GET	|get single Music track	|/api/playlists/{playlistId}/music/{musicId} |None	|None	|PUBLIC
-|POST	|create  Music track	|/api/playlists/{playlistId}/music	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
+|GET	|get all Music from playlist	|/api/artists/{artistId}/songs	|None	|None	|PUBLIC
+|GET	|get single Music track from playlist	|/api/playlists/{playlistId}/music/{musicId} |None	|None	|PUBLIC
+|POST	|add Music track to playlist	|/api/playlists/{playlistId}/music	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
 |PUT	|update Music track	|/api/playlists/{playlistId}/music/{musicId}	|Music Track info	|Authorization Bearer TOKEN	|ADMIN
 |DELETE	|delete Music track	|/api/playlists/{playlistId}/music/{musicId}	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get all Audiobooks	|/api/artists/{artistId}/book	|None	|None	|PUBLIC
@@ -63,5 +63,6 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |GET	|get all Media Types	|/api/library	|None	|Authorization Bearer TOKEN	|ADMIN
 |GET	|get by single Media type	|/api/library/{mediaType}	|None	|Authorization Bearer TOKEN	|ADMIN
 |POST	|create Media Type	|/api/library	|Media Type Info	|Authorization Bearer TOKEN	|ADMIN
+|GET	|create music track for overall music library 	|/api/library/{mediaId}/music	|None	|Authorization Bearer TOKEN	|ADMIN
 
 
