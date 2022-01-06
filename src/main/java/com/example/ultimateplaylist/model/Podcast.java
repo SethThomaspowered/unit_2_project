@@ -1,11 +1,12 @@
 package com.example.ultimateplaylist.model;
 
 import javax.persistence.*;
-import java.util.Locale;
+import java.io.Serializable;
+
 
 @Entity
-@Table
-public class Podcast {
+@Table(name = "podcast")
+public class Podcast implements Serializable {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

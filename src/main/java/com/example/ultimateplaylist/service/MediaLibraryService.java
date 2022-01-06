@@ -107,4 +107,11 @@ public class MediaLibraryService {
         List<Podcast> podcasts = podcastRepository.findAll();
         return podcasts;
     }
+    public Podcast getPodcast(Long podcastId){
+        Podcast podcast = podcastRepository.getById(podcastId);
+        if(podcast == null){
+            throw new InformationNotFoundException("Podcast with id " + podcastId + "was not found");
+        }
+        return podcast;
+    }
 }

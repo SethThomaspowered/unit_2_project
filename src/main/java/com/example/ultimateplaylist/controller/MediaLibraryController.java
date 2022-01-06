@@ -54,6 +54,12 @@ public class MediaLibraryController {
     }
     @GetMapping("/library/1/podcast")
     public List<Podcast> getAllPodcasts(){
+        LOGGER.info("calling getAllPodcasts from controller");
         return mediaLibraryService.getAllPodcasts();
+    }
+    @GetMapping("/library/1/podcast/{podcastId}")
+    public Podcast getPodcast(@PathVariable("podcastId") Long podcastId){
+        LOGGER.info("calling getPodcast from controller");
+        return mediaLibraryService.getPodcast(podcastId);
     }
 }
