@@ -20,7 +20,7 @@ public class MediaLibraryController {
     public void setMediaLibraryService(MediaLibraryService mediaLibraryService){
         this.mediaLibraryService =mediaLibraryService;
     }
-    
+
     @GetMapping("/library")
     public List<Media> getAllMedia(){
         LOGGER.info("calling getAllMedia from controller");
@@ -47,5 +47,13 @@ public class MediaLibraryController {
     public Music addNewMusic(@PathVariable(value = "mediaId") Long mediaId, @RequestBody Music musicObject){
         LOGGER.info("calling addNewMusic from controller");
         return mediaLibraryService.addNewMusic(mediaId, musicObject);
+    }
+    @DeleteMapping("/library/{mediaId}/podcast/{podcastId}")
+    public Podcast deletePodcast(@PathVariable("mediaId") Long mediaId, @PathVariable("podcastId") Long podcastId){
+        return mediaLibraryService.deletePodcast(mediaId, podcastId);
+    }
+    @GetMapping("/library/1/podcast")
+    public List<Podcast> getAllPodcasts(){
+        return mediaLibraryService.getAllPodcasts();
     }
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -91,5 +93,18 @@ public class MediaLibraryService {
         } else {
             throw new InformationNotFoundException("Media type does not match music");
         }
+    }
+    public Podcast deletePodcast(Long mediaId, Long podcastId) {
+        try {
+            Podcast podcast = podcastRepository.getById(podcastId);
+            podcastRepository.deleteById(podcast.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("music track or playlist not found");
+        }
+        return null;
+    }
+    public List<Podcast> getAllPodcasts(){
+        List<Podcast> podcasts = podcastRepository.findAll();
+        return podcasts;
     }
 }

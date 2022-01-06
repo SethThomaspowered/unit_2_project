@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     Podcast findByTitle(String title);
+    Podcast findByMediaId(Long mediaId);
 }

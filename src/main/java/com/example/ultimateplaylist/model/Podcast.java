@@ -1,6 +1,7 @@
 package com.example.ultimateplaylist.model;
 
 import javax.persistence.*;
+import java.util.Locale;
 
 @Entity
 @Table
@@ -97,4 +98,6 @@ public class Podcast {
     public void setMedia(Media media) {
         this.media = media;
     }
+
+
 }
