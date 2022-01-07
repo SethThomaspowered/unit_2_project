@@ -67,10 +67,12 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 ## Project Challeneges
 Type definition error 
    - When adding additional media models, an error we faced was an Serialization on empty bean error. Debugging for this error took up almost a full day. The solution to this problem was to add this code to our Application's dev properties: `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false`
+   
 Mapping many media files to many playlists.
    - Our first attempt was to use the `@ManyToMany` coding in our models, however, this spurred many bugs downstream. So we pivoted and built out this utility by building an extensive repository folder and controller folder.
+   
 Null media Tables
    - Our Podcast table would return as Null. The solution turned out to be reconstructing our getters and setters for this model and that fixed the problem.
 
 ## Next Steps
-We got a backend and our playlist database ready. So for future steps we would like to merge our Front-end learnings to create something we can interact with to  select and play an item within the playlist.
+We have a backend model and our playlist database ready. For the future, we would like to merge our Front-end learnings to create something we can interact with to  select and play an item within the playlist.
