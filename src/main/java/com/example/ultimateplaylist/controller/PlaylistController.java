@@ -1,9 +1,6 @@
 package com.example.ultimateplaylist.controller;
 
-import com.example.ultimateplaylist.model.Artist;
-import com.example.ultimateplaylist.model.Music;
-import com.example.ultimateplaylist.model.Playlist;
-import com.example.ultimateplaylist.model.Podcast;
+import com.example.ultimateplaylist.model.*;
 import com.example.ultimateplaylist.service.ArtistService;
 import com.example.ultimateplaylist.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,8 +149,8 @@ public class PlaylistController {
         LOGGER.info("calling getPlaylistPodcast method from controller");
         return playlistService.getPlaylistPodcast(playlistId, podcastId);
     }
-    // http://localhost:9092/api/playlists/1/music
-    @GetMapping(path = "/playlists/{playlistId}/music")
+    // http://localhost:9092/api/playlists/1/podcast
+    @GetMapping(path = "/playlists/{playlistId}/podcast")
     public List<Podcast> getPlaylistPodcastList( @PathVariable (value = "playlistId") Long playlistId){
         LOGGER.info("calling getPlaylistPodcastList method from controller");
         return playlistService.getPlaylistPodcastList(playlistId);
@@ -174,4 +171,43 @@ public class PlaylistController {
                                      @PathVariable (value = "podcastId") Long podcastId){
         return playlistService.deletePlaylistPodcast(playlistId,podcastId);
     }
+    // http://localhost:9092/api/playlists/1/podcast
+    @PostMapping("/playlists/{playlistId}/audiobook")
+    public Audiobook addPlaylistAudiobook(
+            @PathVariable(value = "playlistId") Long playlistId,
+            @RequestBody Audiobook audiobookObject) {
+        LOGGER.info("calling addPlaylistAudiobook method from controller");
+        return playlistService.addPlaylistAudiobook(playlistId, audiobookObject);
+    }
+
+    // http://localhost:9092/api/playlists/1/audiobook/1
+    @GetMapping(path = "/playlists/{playlistId}/audiobook/{audiobookId}")
+    public Audiobook getPlaylistAudiobook(@PathVariable(value = "playlistId") Long playlistId,
+                                          @PathVariable(value = "audiobookId") Long audiobookId){
+        LOGGER.info("calling getPlaylistAudiobook method from controller");
+        return playlistService.getPlaylistAudiobook(playlistId, audiobookId);
+    }
+    // http://localhost:9092/api/playlists/1/audiobook
+    @GetMapping(path = "/playlists/{playlistId}/audiobook")
+    public List<Audiobook> getPlaylistAudiobookList( @PathVariable (value = "playlistId") Long playlistId){
+        LOGGER.info("calling getPlaylistAudiobookList method from controller");
+        return playlistService.getPlaylistAudiobookList(playlistId);
+    }
+
+
+
+//    // http://localhost:9092/api/playlists/1/podcast/1
+//    @PutMapping(path= "/playlists/{playlistId}/podcast/{podcastId}")
+//    public Podcast updatePlaylistPodcast( @PathVariable (value = "playlistId") Long playlistId,
+//                                          @PathVariable(value = "podcastId") Long podcastId,
+//                                          @RequestBody Podcast podcastObject){
+//        return playlistService.updatePlaylistPodcast(playlistId,podcastId,podcastObject);
+//    }
+//
+//    // http://localhost:9092/api/playlists/1/podcast/1
+//    @DeleteMapping(path = "/playlists/{playlistId}/podcast/{podcastId}")
+//    public Podcast deletePlaylistPodcast(@PathVariable (value = "playlistId") Long playlistId,
+//                                         @PathVariable (value = "podcastId") Long podcastId){
+//        return playlistService.deletePlaylistPodcast(playlistId,podcastId);
+//    }
 }
