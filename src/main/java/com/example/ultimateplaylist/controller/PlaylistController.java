@@ -152,12 +152,12 @@ public class PlaylistController {
         LOGGER.info("calling getPlaylistPodcast method from controller");
         return playlistService.getPlaylistPodcast(playlistId, podcastId);
     }
-//    // http://localhost:9092/api/playlists/1/music
-//    @GetMapping(path = "/playlists/{playlistId}/music")
-//    public List<Music> getPlaylistMusicList( @PathVariable (value = "playlistId") Long playlistId){
-//        LOGGER.info("calling getPlaylistMusicList method from controller");
-//        return playlistService.getPlaylistMusicList(playlistId);
-//    }
+    // http://localhost:9092/api/playlists/1/music
+    @GetMapping(path = "/playlists/{playlistId}/music")
+    public List<Podcast> getPlaylistPodcastList( @PathVariable (value = "playlistId") Long playlistId){
+        LOGGER.info("calling getPlaylistPodcastList method from controller");
+        return playlistService.getPlaylistPodcastList(playlistId);
+    }
 //
 //
 //    // http://localhost:9092/api/playlists/1/music/1
