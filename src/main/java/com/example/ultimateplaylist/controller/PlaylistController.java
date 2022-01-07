@@ -73,6 +73,7 @@ public class PlaylistController {
         LOGGER.info("calling deletePlaylist method from controller");
         return playlistService.deletePlaylist(playlistId);
     }
+
     // http://localhost:9092/api/playlists/1/music
     @PostMapping("/playlists/{playlistId}/music")
     public Music addPlaylistMusic(
@@ -146,9 +147,9 @@ public class PlaylistController {
 
     // http://localhost:9092/api/playlists/1/podcast/1
     @GetMapping(path = "/playlists/{playlistId}/podcast/{podcastId}")
-    public Music getPlaylistPodcast( @PathVariable(value = "playlistId") Long playlistId,
+    public Podcast getPlaylistPodcast( @PathVariable(value = "playlistId") Long playlistId,
                                      @PathVariable(value = "podcastId") Long podcastId){
-        LOGGER.info("calling getPlaylistMusic method from controller");
+        LOGGER.info("calling getPlaylistPodcast method from controller");
         return playlistService.getPlaylistPodcast(playlistId, podcastId);
     }
 //    // http://localhost:9092/api/playlists/1/music

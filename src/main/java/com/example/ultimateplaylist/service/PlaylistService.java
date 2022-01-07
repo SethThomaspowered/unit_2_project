@@ -199,15 +199,15 @@ public class PlaylistService {
             throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
         }
     }
-    public Music getPlaylistPodcast(Long playlistId, Long musicId) {
-        LOGGER.info("calling getPlaylistMusic method from service");
+    public Podcast getPlaylistPodcast(Long playlistId, Long podcastId) {
+        LOGGER.info("calling getPlaylistPodcast method from service");
         Optional<Playlist> playlist = playlistRepository.findById(playlistId);
         if (playlist.isPresent()) {
-            Optional<Music> music = musicRepository.findByPlaylistId(playlistId).stream().filter(
-                    p -> p.getId().equals(musicId)).findFirst();
-            if (music.isEmpty()) {
-                throw new InformationNotFoundException("Songs with " + musicId + " not found");
-            } else return music.get();
+            Optional<Podcast> podcast = podcastRepository.findById(playlistId).stream().filter(
+                    p -> p.getId().equals(podcastId)).findFirst();
+            if (podcast.isEmpty()) {
+                throw new InformationNotFoundException("Podcast with " + podcastId + " not found");
+            } else return podcast.get();
         } else {
             throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
         }
