@@ -5,9 +5,11 @@ import com.example.ultimateplaylist.exception.InformationExistsException;
 import com.example.ultimateplaylist.exception.InformationNotFoundException;
 import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Playlist;
+import com.example.ultimateplaylist.model.Podcast;
 import com.example.ultimateplaylist.repository.ArtistRepository;
 import com.example.ultimateplaylist.repository.MusicRepository;
 import com.example.ultimateplaylist.repository.PlaylistRepository;
+import com.example.ultimateplaylist.repository.PodcastRepository;
 import com.example.ultimateplaylist.security.MyUserDetails;
 import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,11 @@ public class PlaylistService {
     @Autowired
     private void setPlaylistRepository(PlaylistRepository playlistRepository){
         this.playlistRepository=playlistRepository;
+    }
+    private PodcastRepository podcastRepository;
+    @Autowired
+    public void setPodcastRepository(PodcastRepository podcastRepository){
+        this.podcastRepository = podcastRepository;
     }
     public Playlist createPlaylist(@RequestBody Playlist playlistObject){
         LOGGER.info("calling createPlaylist from service");
@@ -164,5 +171,45 @@ public class PlaylistService {
             throw new InformationNotFoundException("music track or playlist not found");
         }
         return null;
+    }
+    public Podcast addPlaylistPodcast(Long playlistId, Podcast podcastObject) {
+        System.out.println("service calling addPlaylistPodcast ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        if (playlist == null) {
+            throw new InformationNotFoundException(
+                    "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
+        }
+        Podcast podcast = podcastRepository.findByTitleAndUserId(podcastObject.getTitle(), userDetails.getUser().getId());
+        if (podcast != null) {
+            throw new InformationExistsException("Podcast with title " + podcast.getTitle() + " already exists");
+        }
+        podcastObject.setUser(userDetails.getUser());
+        podcastObject.setPlaylist(playlist);
+        return podcastRepository.save(podcastObject);
+    }
+
+    public List<Music> getPlaylistPodcastList(Long playlistId){
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            return playlist.get().getMusicList();
+        } else {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        }
+    }
+    public Music getPlaylistPodcast(Long playlistId, Long musicId) {
+        LOGGER.info("calling getPlaylistMusic method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            Optional<Music> music = musicRepository.findByPlaylistId(playlistId).stream().filter(
+                    p -> p.getId().equals(musicId)).findFirst();
+            if (music.isEmpty()) {
+                throw new InformationNotFoundException("Songs with " + musicId + " not found");
+            } else return music.get();
+        } else {
+            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
+        }
     }
 }

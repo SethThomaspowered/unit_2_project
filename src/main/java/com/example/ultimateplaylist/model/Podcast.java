@@ -1,5 +1,7 @@
 package com.example.ultimateplaylist.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -38,8 +40,18 @@ public class Podcast implements Serializable {
     private String series;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "podcast_id")
     private Media media;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Podcast() {
     }
@@ -100,5 +112,19 @@ public class Podcast implements Serializable {
         this.media = media;
     }
 
+    public Playlist getPlaylist() {
+        return playlist;
+    }
 
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

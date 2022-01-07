@@ -27,6 +27,9 @@ public class Playlist {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Music> musicList;
 
+    @OneToMany(mappedBy = "playlist", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Podcast> podcastList;
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore

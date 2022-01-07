@@ -73,22 +73,21 @@ public class PlaylistController {
         LOGGER.info("calling deletePlaylist method from controller");
         return playlistService.deletePlaylist(playlistId);
     }
-
-    // http://localhost:9092/api/playlists/1/podcast
-    @PostMapping("/playlists/{playlistId}/podcast")
-    public Music addPlaylistPodcast(
+    // http://localhost:9092/api/playlists/1/music
+    @PostMapping("/playlists/{playlistId}/music")
+    public Music addPlaylistMusic(
             @PathVariable(value = "playlistId") Long playlistId,
-            @RequestBody Podcast podcastObject) {
-        LOGGER.info("calling addPlaylistPodcast method from controller");
-        return playlistService.addPlaylistPodcast(playlistId, podcastObject);
+            @RequestBody Music musicObject) {
+        LOGGER.info("calling addPlaylistMusic method from controller");
+        return playlistService.addPlaylistMusic(playlistId, musicObject);
     }
 
-    // http://localhost:9092/api/playlists/1/podcast/1
-    @GetMapping(path = "/playlists/{playlistId}/podcast/{podcastId}")
-    public Music getPlaylistPodcast( @PathVariable(value = "playlistId") Long playlistId,
-                                     @PathVariable(value = "podcastId") Long podcastId){
+    // http://localhost:9092/api/playlists/1/music/1
+    @GetMapping(path = "/playlists/{playlistId}/music/{musicId}")
+    public Music getPlaylistMusic( @PathVariable(value = "playlistId") Long playlistId,
+                                   @PathVariable(value = "musicId") Long musicId){
         LOGGER.info("calling getPlaylistMusic method from controller");
-        return playlistService.getPlaylistPodcast(playlistId, podcastId);
+        return playlistService.getPlaylistMusic(playlistId, musicId);
     }
 
     // http://localhost:9092/api/playlists/1/music
@@ -135,23 +134,23 @@ public class PlaylistController {
 
         return artistService.getArtists();
     }
-    // http://localhost:9092/api/playlists/1/music
-    @PostMapping("/playlists/{playlistId}/music")
-    public Music addPlaylistMusic(
+
+    // http://localhost:9092/api/playlists/1/podcast
+    @PostMapping("/playlists/{playlistId}/podcast")
+    public Podcast addPlaylistPodcast(
             @PathVariable(value = "playlistId") Long playlistId,
-            @RequestBody Music musicObject) {
-        LOGGER.info("calling addPlaylistMusic method from controller");
-        return playlistService.addPlaylistMusic(playlistId, musicObject);
+            @RequestBody Podcast podcastObject) {
+        LOGGER.info("calling addPlaylistPodcast method from controller");
+        return playlistService.addPlaylistPodcast(playlistId, podcastObject);
     }
 
-    // http://localhost:9092/api/playlists/1/music/1
-    @GetMapping(path = "/playlists/{playlistId}/music/{musicId}")
-    public Music getPlaylistMusic( @PathVariable(value = "playlistId") Long playlistId,
-                                   @PathVariable(value = "musicId") Long musicId){
+    // http://localhost:9092/api/playlists/1/podcast/1
+    @GetMapping(path = "/playlists/{playlistId}/podcast/{podcastId}")
+    public Music getPlaylistPodcast( @PathVariable(value = "playlistId") Long playlistId,
+                                     @PathVariable(value = "podcastId") Long podcastId){
         LOGGER.info("calling getPlaylistMusic method from controller");
-        return playlistService.getPlaylistMusic(playlistId, musicId);
+        return playlistService.getPlaylistPodcast(playlistId, podcastId);
     }
-
 //    // http://localhost:9092/api/playlists/1/music
 //    @GetMapping(path = "/playlists/{playlistId}/music")
 //    public List<Music> getPlaylistMusicList( @PathVariable (value = "playlistId") Long playlistId){
