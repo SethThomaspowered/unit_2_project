@@ -127,4 +127,29 @@ public class Podcast implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Artist artist;
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public Podcast(Long id, String title, String length, String releaseDate, boolean isPublic, String series, Media media, Playlist playlist, User user, Artist artist) {
+        this.id = id;
+        this.title = title;
+        this.length = length;
+        this.releaseDate = releaseDate;
+        this.isPublic = isPublic;
+        this.series = series;
+        this.media = media;
+        this.playlist = playlist;
+        this.user = user;
+        this.artist = artist;
+    }
 }

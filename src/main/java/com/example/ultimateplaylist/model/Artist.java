@@ -28,6 +28,7 @@ public class Artist {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Music> musicList;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -83,5 +84,35 @@ public class Artist {
                 ", name='" + name + '\'' +
                 ", artist type='" + artistType + '\'' +
                 '}';
+    }
+    @OneToMany(mappedBy = "artist", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Podcast> PodcastList;
+    @OneToMany(mappedBy = "artist", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Audiobook> audiobookList;
+
+    public List<Music> getMusicList() {
+        return musicList;
+    }
+
+    public void setMusicList(List<Music> musicList) {
+        this.musicList = musicList;
+    }
+
+    public List<Podcast> getPodcastList() {
+        return PodcastList;
+    }
+
+    public void setPodcastList(List<Podcast> podcastList) {
+        PodcastList = podcastList;
+    }
+
+    public List<Audiobook> getAudiobookList() {
+        return audiobookList;
+    }
+
+    public void setAudiobookList(List<Audiobook> audiobookList) {
+        this.audiobookList = audiobookList;
     }
 }
