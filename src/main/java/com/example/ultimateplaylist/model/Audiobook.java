@@ -3,57 +3,72 @@ package com.example.ultimateplaylist.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
 
 @Entity
-@Table(name = "podcast")
-public class Podcast implements Serializable {
+@Table(name = "audiobooks")
+public class Audiobook {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
     private String title;
-
-    public Podcast(Long id, String title, String length, String releaseDate, boolean isPublic, String series, Media media) {
-        this.id = id;
-        this.title = title;
-        this.length = length;
-        this.releaseDate = releaseDate;
-        this.isPublic = isPublic;
-        this.series = series;
-        this.media = media;
-    }
-
     @Column
-    private String length;
-
+    private Integer time;
     @Column
     private String releaseDate;
-
     @Column
     private boolean isPublic;
-
-    @Column
-    private String series;
-
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "podcast_id")
+    @JoinColumn(name = "media_id")
     private Media media;
-
-    @JsonIgnore
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "playlist_id")
     private Playlist playlist;
     @ManyToOne
-    @JoinColumn(name = "user_id")
     @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
-    public Podcast() {
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public Audiobook(Long id, String title, Integer time, String releaseDate, boolean isPublic) {
+        this.id = id;
+        this.title = title;
+        this.time = time;
+        this.releaseDate = releaseDate;
+        this.isPublic = isPublic;
+    }
+
+    public Audiobook() {
     }
 
     public Long getId() {
@@ -72,12 +87,12 @@ public class Podcast implements Serializable {
         this.title = title;
     }
 
-    public String getLength() {
-        return length;
+    public Integer getTime() {
+        return time;
     }
 
-    public void setLength(String length) {
-        this.length = length;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public String getReleaseDate() {
@@ -96,35 +111,11 @@ public class Podcast implements Serializable {
         isPublic = aPublic;
     }
 
-    public String getSeries() {
-        return series;
-    }
-
-    public void setSeries(String series) {
-        this.series = series;
-    }
-
     public Media getMedia() {
         return media;
     }
 
     public void setMedia(Media media) {
         this.media = media;
-    }
-
-    public Playlist getPlaylist() {
-        return playlist;
-    }
-
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ultimateplaylist.controller;
 
+import com.example.ultimateplaylist.model.Audiobook;
 import com.example.ultimateplaylist.model.Media;
 import com.example.ultimateplaylist.model.Music;
 import com.example.ultimateplaylist.model.Podcast;
@@ -61,5 +62,10 @@ public class MediaLibraryController {
     public Podcast getPodcast(@PathVariable("podcastId") Long podcastId){
         LOGGER.info("calling getPodcast from controller");
         return mediaLibraryService.getPodcast(podcastId);
+    }
+    @PostMapping("/library/{mediaId}/audiobook")
+    public Audiobook addNewAudiobook(@PathVariable("mediaId") Long mediaId, @RequestBody Audiobook audiobookObject){
+        LOGGER.info("calling addNewPodcast from controller");
+        return mediaLibraryService.addNewAudiobook(mediaId, audiobookObject);
     }
 }

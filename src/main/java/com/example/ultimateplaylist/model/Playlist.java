@@ -18,6 +18,8 @@ public class Playlist {
     @Column
     private String title;
 
+
+
     @Column
     private String description;
 
@@ -26,6 +28,14 @@ public class Playlist {
     @OneToMany(mappedBy = "playlist", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Music> musicList;
+
+    @OneToMany(mappedBy = "playlist", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Podcast> podcastList;
+
+    @OneToMany(mappedBy = "playlist", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Audiobook> audiobookList;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -86,6 +96,32 @@ public class Playlist {
 
     public User getUser() {
         return user;
+    }
+
+    public List<Podcast> getPodcastList() {
+        return podcastList;
+    }
+
+    public void setPodcastList(List<Podcast> podcastList) {
+        this.podcastList = podcastList;
+    }
+
+    public Playlist(Long id, String title, String description, List<Music> musicList, List<Podcast> podcastList, List<Audiobook> audiobookList, User user) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.musicList = musicList;
+        this.podcastList = podcastList;
+        this.audiobookList = audiobookList;
+        this.user = user;
+    }
+
+    public List<Audiobook> getAudiobookList() {
+        return audiobookList;
+    }
+
+    public void setAudiobookList(List<Audiobook> audiobookList) {
+        this.audiobookList = audiobookList;
     }
 
     public void setUser(User user) {
