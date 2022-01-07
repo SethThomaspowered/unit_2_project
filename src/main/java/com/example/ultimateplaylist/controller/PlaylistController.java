@@ -202,10 +202,10 @@ public class PlaylistController {
         return playlistService.updatePlaylistAudiobook(playlistId,audiobookId,audiobookObject);
     }
 
-//    // http://localhost:9092/api/playlists/1/podcast/1
-//    @DeleteMapping(path = "/playlists/{playlistId}/podcast/{podcastId}")
-//    public Podcast deletePlaylistPodcast(@PathVariable (value = "playlistId") Long playlistId,
-//                                         @PathVariable (value = "podcastId") Long podcastId){
-//        return playlistService.deletePlaylistPodcast(playlistId,podcastId);
-//    }
+    // http://localhost:9092/api/playlists/1/audiobook/1
+    @DeleteMapping(path = "/playlists/{playlistId}/audiobook/{audiobookId}")
+    public Audiobook deletePlaylistAudiobook(@PathVariable (value = "playlistId") Long playlistId,
+                                         @PathVariable (value = "audiobookId") Long audiobookId){
+        return playlistService.deletePlaylistAudiobook(playlistId,audiobookId);
+    }
 }
