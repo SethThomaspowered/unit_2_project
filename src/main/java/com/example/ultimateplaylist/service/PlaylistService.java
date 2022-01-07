@@ -263,15 +263,15 @@ public class PlaylistService {
         return audiobookRepository.save(audiobookObject);
     }
 
-//    public List<Podcast> getPlaylistPodcastList(Long playlistId){
-//        LOGGER.info("calling getPlaylistPodcastList method from service");
-//        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
-//        if (playlist.isPresent()) {
-//            return playlist.get().getPodcastList();
-//        } else {
-//            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
-//        }
-//    }
+    public List<Audiobook> getPlaylistAudiobookList(Long playlistId){
+        LOGGER.info("calling getPlaylistAudiobookList method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            return playlist.get().getAudiobookList();
+        } else {
+            throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
+        }
+    }
 //    public Podcast getPlaylistPodcast(Long playlistId, Long podcastId) {
 //        LOGGER.info("calling getPlaylistPodcast method from service");
 //        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
