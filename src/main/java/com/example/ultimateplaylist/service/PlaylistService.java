@@ -190,11 +190,11 @@ public class PlaylistService {
         return podcastRepository.save(podcastObject);
     }
 
-    public List<Music> getPlaylistPodcastList(Long playlistId){
-        LOGGER.info("calling getPlaylistMusic method from service");
+    public List<Podcast> getPlaylistPodcastList(Long playlistId){
+        LOGGER.info("calling getPlaylistPodcastList method from service");
         Optional<Playlist> playlist = playlistRepository.findById(playlistId);
         if (playlist.isPresent()) {
-            return playlist.get().getMusicList();
+            return playlist.get().getPodcastList();
         } else {
             throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
         }
@@ -212,4 +212,35 @@ public class PlaylistService {
             throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
         }
     }
+    public Podcast updatePlaylistPodcast(Long playlistId, Long podcastId, Podcast podcastObject) {
+        LOGGER.info("service calling updatePlaylistPodcast ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        try {
+            Podcast podcast = (podcastRepository.findById(
+                    playlistId).stream().filter(p -> p.getId().equals(podcastId)).findFirst()).get();
+            podcast.setTitle(podcastObject.getTitle());
+            podcast.setLength(podcastObject.getLength());
+            podcast.setReleaseDate(podcastObject.getReleaseDate());
+//            podcast.setArtist(podcastObject.getArtist());
+            return podcastRepository.save(podcast);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Podcast or playlist not found");
+        }
+    }
+    public Podcast deletePlaylistPodcast(Long playlistId, Long podcastId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        try {
+            Podcast podcast = (podcastRepository.findById(
+                    playlistId).stream().filter(p -> p.getId().equals(podcastId)).findFirst()).get();
+            podcastRepository.deleteById(podcast.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Podcast or playlist not found");
+        }
+        return null;
+    }
+
 }
