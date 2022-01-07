@@ -272,36 +272,36 @@ public class PlaylistService {
             throw new InformationNotFoundException("Playlist with id " + playlistId + " not found");
         }
     }
-//    public Podcast getPlaylistPodcast(Long playlistId, Long podcastId) {
-//        LOGGER.info("calling getPlaylistPodcast method from service");
-//        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
-//        if (playlist.isPresent()) {
-//            Optional<Podcast> podcast = podcastRepository.findById(playlistId).stream().filter(
-//                    p -> p.getId().equals(podcastId)).findFirst();
-//            if (podcast.isEmpty()) {
-//                throw new InformationNotFoundException("Podcast with " + podcastId + " not found");
-//            } else return podcast.get();
-//        } else {
-//            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
-//        }
-//    }
-//    public Podcast updatePlaylistPodcast(Long playlistId, Long podcastId, Podcast podcastObject) {
-//        LOGGER.info("service calling updatePlaylistPodcast ==>");
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
-//        try {
-//            Podcast podcast = (podcastRepository.findById(
-//                    playlistId).stream().filter(p -> p.getId().equals(podcastId)).findFirst()).get();
-//            podcast.setTitle(podcastObject.getTitle());
-//            podcast.setLength(podcastObject.getLength());
-//            podcast.setReleaseDate(podcastObject.getReleaseDate());
-////            podcast.setArtist(podcastObject.getArtist());
-//            return podcastRepository.save(podcast);
-//        } catch (NoSuchElementException e) {
-//            throw new InformationNotFoundException("Podcast or playlist not found");
-//        }
-//    }
+    public Audiobook getPlaylistAudiobook(Long playlistId, Long audiobookId) {
+        LOGGER.info("calling getPlaylistAudiobook method from service");
+        Optional<Playlist> playlist = playlistRepository.findById(playlistId);
+        if (playlist.isPresent()) {
+            Optional<Audiobook> audiobook = audiobookRepository.findById(playlistId).stream().filter(
+                    p -> p.getId().equals(audiobookId)).findFirst();
+            if (audiobook.isEmpty()) {
+                throw new InformationNotFoundException("Audiobook with " + audiobookId + " not found");
+            } else return audiobook.get();
+        } else {
+            throw new InformationNotFoundException("No playlist with id " + playlistId + " not found");
+        }
+    }
+    public Audiobook updatePlaylistAudiobook(Long playlistId, Long audiobookId, Audiobook audiobookObject) {
+        LOGGER.info("service calling updatePlaylistAudiobook ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        try {
+            Audiobook audiobook = (audiobookRepository.findById(
+                    playlistId).stream().filter(p -> p.getId().equals(audiobookId)).findFirst()).get();
+            audiobook.setTitle(audiobookObject.getTitle());
+            audiobook.setTime(audiobookObject.getTime());
+            audiobook.setReleaseDate(audiobookObject.getReleaseDate());
+            audiobook.setArtist(audiobookObject.getArtist());
+            return audiobookRepository.save(audiobook);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Podcast or playlist not found");
+        }
+    }
 //    public Podcast deletePlaylistPodcast(Long playlistId, Long podcastId) {
 //        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
 //                .getPrincipal();
