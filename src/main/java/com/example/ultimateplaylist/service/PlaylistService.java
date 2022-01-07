@@ -302,18 +302,18 @@ public class PlaylistService {
             throw new InformationNotFoundException("Podcast or playlist not found");
         }
     }
-//    public Podcast deletePlaylistPodcast(Long playlistId, Long podcastId) {
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
-//        try {
-//            Podcast podcast = (podcastRepository.findById(
-//                    playlistId).stream().filter(p -> p.getId().equals(podcastId)).findFirst()).get();
-//            podcastRepository.deleteById(podcast.getId());
-//        } catch (NoSuchElementException e) {
-//            throw new InformationNotFoundException("Podcast or playlist not found");
-//        }
-//        return null;
-//    }
+    public Audiobook deletePlaylistAudiobook(Long playlistId, Long audiobookId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Playlist playlist = playlistRepository.findByIdAndUserId(playlistId, userDetails.getUser().getId());
+        try {
+            Audiobook audiobook = (audiobookRepository.findById(
+                    playlistId).stream().filter(p -> p.getId().equals(audiobookId)).findFirst()).get();
+            audiobookRepository.deleteById(audiobook.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Audiobook or playlist not found");
+        }
+        return null;
+    }
 
 }
