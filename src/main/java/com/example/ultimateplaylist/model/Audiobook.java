@@ -1,5 +1,7 @@
 package com.example.ultimateplaylist.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,8 +20,45 @@ public class Audiobook {
     @Column
     private boolean isPublic;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "media_id")
     private Media media;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
 
     public Audiobook(Long id, String title, Integer time, String releaseDate, boolean isPublic) {
         this.id = id;
