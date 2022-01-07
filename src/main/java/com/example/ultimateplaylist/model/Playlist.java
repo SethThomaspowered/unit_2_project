@@ -18,6 +18,10 @@ public class Playlist {
     @Column
     private String title;
 
+    public Playlist(List<Podcast> podcastList) {
+        this.podcastList = podcastList;
+    }
+
     @Column
     private String description;
 
@@ -89,6 +93,14 @@ public class Playlist {
 
     public User getUser() {
         return user;
+    }
+
+    public List<Podcast> getPodcastList() {
+        return podcastList;
+    }
+
+    public void setPodcastList(List<Podcast> podcastList) {
+        this.podcastList = podcastList;
     }
 
     public void setUser(User user) {
