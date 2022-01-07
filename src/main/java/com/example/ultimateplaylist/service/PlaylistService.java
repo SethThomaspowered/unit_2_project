@@ -255,12 +255,12 @@ public class PlaylistService {
                     "Playlist with id " + playlistId + " not belongs to this user or playlist does not exist");
         }
         Audiobook audiobook = audiobookRepository.findByTitleAndUserId(audiobookObject.getTitle(), userDetails.getUser().getId());
-        if (podcast != null) {
-            throw new InformationExistsException("Podcast with title " + podcast.getTitle() + " already exists");
+        if (audiobook != null) {
+            throw new InformationExistsException("Audiobook with title " + audiobook.getTitle() + " already exists");
         }
-        podcastObject.setUser(userDetails.getUser());
-        podcastObject.setPlaylist(playlist);
-        return podcastRepository.save(podcastObject);
+        audiobookObject.setUser(userDetails.getUser());
+        audiobookObject.setPlaylist(playlist);
+        return audiobookRepository.save(audiobookObject);
     }
 
 //    public List<Podcast> getPlaylistPodcastList(Long playlistId){
