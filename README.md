@@ -76,3 +76,7 @@ Null media Tables
 
 ## Next Steps
 We have a backend model and our playlist database ready. For the future, we would like to merge our Front-end learnings to create something we can interact with to  select and play an item within the playlist.
+
+## Proud Moments
+- Team planning 
+- Pivoting arround `@ManyToMany` challenge
