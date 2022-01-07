@@ -15,21 +15,19 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - As an Admin User, I want to be able to search all users.
 
 
-
-
 ## ERD
 ![Media Library ERD (4)](https://user-images.githubusercontent.com/72534273/148461142-6dae3c54-5397-475f-a710-546c7b5ea617.png)
 
-MVP Models
+MVP Models (Goal Met)
 - Users
 - Playlists
 - Music
 
-Nice to Have Models
-- Podcast (complete)
-- Audiobooks
-- Artists (Complete)
-- Media ypes (complete)
+Nice to Have Models ( Goal Met)
+- Podcast 
+- Audiobooks 
+- Artists 
+- Media ypes 
 
 ## EndPoints
 
@@ -66,3 +64,10 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 |GET	|create music track for overall music library 	|/api/library/{mediaId}/music	|None	|Authorization Bearer TOKEN	|ADMIN
 
 
+## Project Challeneges
+- Type definition error 
+- - When adding additional media models, an error we faced was an Serilization on empyty bean error. Debugging for this error took up almost a full day. The solution to this problem was to add this code to our Application's dev properties: `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false`
+- Mapping many media files to many playlists.
+- - Our first attempt was to use the `@ManyToMany` coding in our models, however, this spurred to many bugs downstream. So we pivoted and built out this utility by building an extisize repository folder and controller folder.
+
+## Take Aways
