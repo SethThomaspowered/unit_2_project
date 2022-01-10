@@ -7,12 +7,12 @@ You are listening to your favorite podcast when you hear about a new book or alb
 ## User Stories
 - As a user, I want to be able to find music by artist or song title.
 - As a user, I want to be able to create a playlist that includes songs, podcasts, and audiobooks.
-- As a user, I want to be able to search by length of playlist.
 - As a user, I want to be able to make changes to my playlists.
+- As a user, I want to be able to search by media by type.
 - As a user, I want to be able to delete a playlist that I no longer want.
 - As  a content curator, I would like to be able to share my playlists.
-- As an Admin User, I want to be able to create, edit, and delete songs, podcasts, and audiobooks.
-- As an Admin User, I want to be able to search all users.
+- As an Admin User, I want to be able to create, edit, and delete songs, podcasts, and audiobooks list.
+-[Nic to have] As an Admin User, I want to be able to search all users.
 
 ## Technologies Used
 
