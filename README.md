@@ -14,6 +14,18 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - As an Admin User, I want to be able to create, edit, and delete songs, podcasts, and audiobooks.
 - As an Admin User, I want to be able to search all users.
 
+## Technologies Used
+
+- IntelliJ
+- Java 11
+- Spring
+- Maven
+- PSQL
+- Postman
+- Git
+- Github
+- Tomcat
+- JSON Web Tokens
 
 ## ERD
 ![Media Library ERD (4)](https://user-images.githubusercontent.com/72534273/148461142-6dae3c54-5397-475f-a710-546c7b5ea617.png)
