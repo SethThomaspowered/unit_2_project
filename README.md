@@ -26,6 +26,7 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - Github
 - Tomcat
 - JSON Web Tokens
+- Lucidchart
 
 ## ERD
 ![Media Library ERD (6)](https://user-images.githubusercontent.com/72534273/148819372-8906e80c-ee50-466e-a7d2-7290b466109c.png)
