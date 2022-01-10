@@ -66,7 +66,7 @@ Request Type	|Action	|URL	|Request Body	|Request Header	|Access
 
 ## Project Challeneges
 Type definition error 
-   - When adding additional media models, an error we faced was an Serialization on empty bean error. Debugging for this error took up almost a full day. The solution to this problem was to add this code to our Application's dev properties: `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false`Found a solution at (Stack Overflow)[https://stackoverflow.com/questions/28862483/spring-and-jackson-how-to-disable-fail-on-empty-beans-through-responsebody].
+   - When adding additional media models, an error we faced was an Serialization on empty bean error. Debugging for this error took up almost a full day. The solution to this problem was to add this code to our Application's dev properties: `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false`Found a solution at [Stack Overflow](https://stackoverflow.com/questions/28862483/spring-and-jackson-how-to-disable-fail-on-empty-beans-through-responsebody).
    
 Mapping many media files to many playlists.
    - Our first attempt was to use the `@ManyToMany` coding in our models, however, this spurred many bugs downstream. So we pivoted and built out this utility by building an extensive repository folder and controller folder.
