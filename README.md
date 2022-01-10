@@ -28,7 +28,7 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - JSON Web Tokens
 
 ## ERD
-![Media Library ERD (4)](https://user-images.githubusercontent.com/72534273/148461142-6dae3c54-5397-475f-a710-546c7b5ea617.png)
+![Media Library ERD (5)](https://user-images.githubusercontent.com/72534273/148819150-836bf569-abc8-49ec-9b92-b65f7215bb5b.png)
 
 MVP Models (Goal Met)
 - Users
