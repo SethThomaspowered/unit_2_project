@@ -12,7 +12,7 @@ You are listening to your favorite podcast when you hear about a new book or alb
 - As a user, I want to be able to delete a playlist that I no longer want.
 - As  a content curator, I would like to be able to share my playlists.
 - As an Admin User, I want to be able to create, edit, and delete songs, podcasts, and audiobooks list.
--[Nic to have] As an Admin User, I want to be able to search all users.
+- [Nice to have] As an Admin User, I want to be able to search all users.
 
 ## Technologies Used
 
