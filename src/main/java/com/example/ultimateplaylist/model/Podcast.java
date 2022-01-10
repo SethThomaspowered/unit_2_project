@@ -46,7 +46,7 @@ public class Podcast implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "playlist_id")
+    @JoinColumn(name = "playlist_id",  insertable = false, updatable = false)
     private Playlist playlist;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -129,7 +129,7 @@ public class Podcast implements Serializable {
     }
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "playlist_id")
+    @JoinColumn(name = "artist_id")
     private Artist artist;
 
     public Artist getArtist() {
